@@ -1,0 +1,136 @@
+// PAGE LAYOUT
+[data-component] {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    .header {
+        width: 100%;
+        height: $header-height;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        div {
+            &.left-action-btn {
+                position: absolute;
+                left: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Nexa-Light;
+                img {
+                    width: 15px;
+                }
+            }
+            &.title {
+                font-family: Nexa-Bold;
+                font-size: 32px;
+                color: $red;
+                .subtitle {
+                    font-family: Lato-Regular;
+                    font-size: 30px;
+                    color: $light-grey;
+                }
+            }
+            &.right-action-btn{
+                position: absolute;
+                right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: Nexa-Light;
+                img {
+                    width: 20px;
+                }
+            }
+        }    
+    }
+
+    .body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer {
+        border-top: 1px solid $lighter-grey;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex: 1 0 auto;  
+        
+        &.menu {
+            flex: unset;
+            height: $footer-height;
+        }
+
+        img {
+            height: 1.5em;
+        }
+        span {
+            font-family: Lato-Regular;
+            font-size: 10px;
+            margin-top: 5px;
+            &.grey {
+                color: $light-grey; 
+            }
+            &.red {
+                color: $red; 
+            }
+        }
+    }
+}
+
+// FLEX ROW + COLUMN
+.row {
+    width: 700%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    width: 100%;
+    display: flex;
+    flex-direction: column!important;
+    justify-content: center;
+    align-items: center;
+}
+
+.match-parent-height {
+    height: 100%;
+}
+
+.match-parent-width {
+    width: 100%;
+}
+
+button.btn {
+    border: none;
+    border-radius: 5px;
+    padding: .75em 0;
+    font-family: Lato-Regular;
+    font-size: 16px;    
+    color: $white;
+    width: 80%;
+
+    &.red {
+        background-color: $red;
+    }
+
+    &.grey {
+        background-color: $light-grey;
+    }
+}

@@ -1,0 +1,19 @@
+@import '_colors';
+@import '_fonts';
+@import '_variables';
+@import '_normalize';
+
+@import 'layout.scss';
+@import 'components/home.scss';
+
+// Ambulance mode styles
+@import 'components/ambulance-mode/ambulance-mode.scss';
+
+// Patient mode styles
+@import 'components/kid-mode/kid-monitor.scss';
+@import 'components/kid-mode/kid-measurement.scss';
+
+// Læge mode styles
+@import 'components/parent-mode/parent-setup.scss';
+@import 'components/parent-mode/parent-status.scss';
+@import 'components/parent-mode/parent-settings.scss';

@@ -1,0 +1,42 @@
+[data-component="ambulance-main"]{
+    .body {
+        flex: 1 0 auto; 
+
+        .nav-arrow {
+            position: absolute;
+            top: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Nexa-Light;
+            img {
+                width: 15px;
+            }
+            &.prev {
+                left: 5%;
+            }
+            &.next {
+                right: 5%;
+            }
+        } // .nav-arrow
+
+        .line {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1.25em 0;
+            img {
+                width: 50%;
+                height: 1px;
+            }
+        } // .line
+    } // .body
+
+    .footer {
+        border: none;
+        button {
+            bottom: 1em;
+            position: absolute;
+        }
+    } // .footer
+} // [data-component]
