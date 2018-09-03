@@ -2,66 +2,6 @@
     .body {
         flex: 1 0 auto;  
 
-        .glucose-tube {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-
-            img {
-                height: 15em;
-            }
-
-            .glucose-data {
-                position: absolute;
-                left: 6em;
-                right: 0;
-                margin-left:auto;
-                margin-right:auto;
-                width: 6em;
-                padding-left: 2em;
-                
-                &.low {
-                    top: 4.35em;
-                    border-bottom: 2px solid $red;
-                    padding-bottom: 0.5em;
-                }
-
-                &.high {
-                    top: 2.95em;
-                    border-top: 2px solid $red;
-                }
-
-                &.ok {
-                    top: 6.5em;
-                    border-top: 2px solid $red;
-                }
-
-                .value {
-                    color: $red;
-                    font-family: Lato-Black;
-                    font-size: 32px;
-                    font-weight: bold;
-                }
-                
-                .title {
-                    font-family: Lato-Black;
-                    font-size: 10px;
-                    color: $red;            
-                }
-
-                .datetime {
-                    font-family: Lato-Regular;
-                    font-size: 14px;
-                    color: $light-grey;
-                    margin-top: .75em;
-
-                    &.time {
-                        margin-left: 0.5em;
-                    }
-                }
-            } // .glucose-data
-        } // .glucose-tube
 
         .feedback {
             width: 100%;
