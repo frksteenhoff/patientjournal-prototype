@@ -94,11 +94,12 @@
 
 // FLEX ROW + COLUMN
 .row {
-    width: 700%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: .6em 0;
 }
 
 .column {
@@ -120,7 +121,7 @@
 button.btn {
     border: none;
     border-radius: 5px;
-    padding: .75em 0;
+    padding: .6em 0;
     font-family: Lato-Regular;
     font-size: 16px;    
     color: $white;

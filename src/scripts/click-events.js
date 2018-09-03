@@ -24,12 +24,12 @@ function initClickEvents() {
     });
 
     //////////////////////////////////////////////////////////////
-    // PATIENT
+    // PATIENT (all files with 'kid')
     //////////////////////////////////////////////////////////////
 
     $( ".kid.subtitle" ).off().click(function() {
         currentMode = "parent";
-        showComponent("parent-status");
+        showComponent("home");
     });
 
     // PATIENT BOTTOM MENU
@@ -37,9 +37,10 @@ function initClickEvents() {
         showComponent("kid-monitor");
     });
 
-    // KID MONITOR
+    // PATIENT MONITOR
     $( getDataComponent("kid-monitor") + " #monitor-btn" ).off().click(function() {
         $( getDataComponent("kid-monitor") + " .modal" ).removeClass("hidden");
+        $( getDataComponent("kid-monitor") + "#left-action-btn" ).removeClass("hidden");
     });
 
     $( getDataComponent("kid-monitor") + " .submit" ).off().click(function() {
@@ -52,22 +53,21 @@ function initClickEvents() {
         showComponent("kid-measurement");
     });
 
-    // PATIENT MEASUREMENT
+    // PATIENT MAIN
     $( getDataComponent("kid-measurement") + " .back-btn" ).off().click(function() {
-        $( getDataComponent("kid-measurement") + " .measurement-loading").removeClass("hidden");
-        showComponent("kid-monitor");
+        $( getDataComponent("kid-measurement")).addClass("hidden");
+        $( getDataComponent("home")).addClass("hidden");
+        showComponent("home");
     });
 
     //////////////////////////////////////////////////////////////
-    // LÆGE
+    // LÆGE (all files with 'parent')
     //////////////////////////////////////////////////////////////
 
     // TOP BAR
     $( ".parent.subtitle" ).off().click(function() {
-        if ( kid.active) {
             currentMode = "kid";
-            showComponent("kid-monitor");
-        }
+            showComponent("home");
     });
 
     // LÆGE BOTTOM MENU
@@ -79,11 +79,6 @@ function initClickEvents() {
         showComponent("parent-settings");
     });
 
-        
-    $( ".parent-history-tab" ).off().click(function() {
-      showComponent("parent-history");
-    });
-
     // LÆGE SETUP
     $( getDataComponent("parent-setup") + " .submit" ).off().click(function() {
         kid.name = $( ".setup-name" ).val();
@@ -91,9 +86,10 @@ function initClickEvents() {
         kid.regimenType = $( ".setup-regimen" ).val();
         kid.icRatio = $( ".setup-ic" ).val();
         kid.isTeen = $('.setup-teen').is(":checked");
+        $( getDataComponent("parent-setup") + "#left-action-btn" ).removeClass("hidden");
         showComponent("parent-status");
     });
-    
+
     // LÆGE SETTINGS
     $( getDataComponent("parent-settings") + " .edit-btn" ).off().click(function() {
         $( getDataComponent("parent-settings") + " .save-btn").removeClass('hidden');
@@ -123,21 +119,37 @@ function initClickEvents() {
         kid.isTeen = $('.settings-teen').is(":checked");
     });
 
+    // LÆGE -> MAIN
+    $( getDataComponent("parent-setup") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("parent-setup")).addClass("hidden");
+        $( getDataComponent("home")).addClass("hidden");
+        showComponent("home");
+    });
+
     //////////////////////////////////////////////////////////////
     // AMBULANCE
     //////////////////////////////////////////////////////////////
 
     $( ".ambulance.subtitle" ).off().click(function() {
         currentMode = "ambulance";
-        showComponent("ambulance-status");
+        showComponent("home");
     });
 
     // AMBULANCE BOTTOM MENU
     $( ".ambulance-status-tab" ).off().click(function() {
+        // Not yet implemented
         showComponent("ambulance-status");
     });
 
     $( ".ambulance-settings-tab" ).off().click(function() {
+        // Not yet implemented
         showComponent("ambulance-settings");
+    });
+
+    // AMBULANCE -> MAIN
+    $( getDataComponent("ambulance-mode") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("ambulance-mode")).addClass("hidden");
+        $( getDataComponent("home")).addClass("hidden");
+        showComponent("home");
     });
 }
