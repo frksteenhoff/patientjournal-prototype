@@ -40,7 +40,7 @@ function initClickEvents() {
     // PATIENT MONITOR
     $( getDataComponent("kid-monitor") + " #monitor-btn" ).off().click(function() {
         $( getDataComponent("kid-monitor") + " .modal" ).removeClass("hidden");
-        $( getDataComponent("kid-monitor") + "#left-action-btn" ).removeClass("hidden");
+        $( getDataComponent("kid-monitor") + "#sleft-action-btn" ).removeClass("hidden");
     });
 
     $( getDataComponent("kid-monitor") + " .submit" ).off().click(function() {
@@ -125,6 +125,13 @@ function initClickEvents() {
         $( getDataComponent("home")).addClass("hidden");
         showComponent("home");
     });
+
+    $( getDataComponent("parent-status") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("parent-status")).addClass("hidden");
+        $( getDataComponent("home")).addClass("hidden");
+        showComponent("home");
+    });
+
 
     //////////////////////////////////////////////////////////////
     // AMBULANCE
