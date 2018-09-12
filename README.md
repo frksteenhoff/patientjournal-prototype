@@ -1,4 +1,3 @@
-gul#  Patientjournal prototype
 
 ## Prerequisites
   - NodeJS
