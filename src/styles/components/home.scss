@@ -16,6 +16,13 @@
                 border: 1px solid $lighter-grey;
             }
         }
+        .column:hover{
+            cursor: pointer;
+            box-shadow: 2px 2px 8px 0px #282828 !important;
+        }
+        .column:active{
+            box-shadow: inset 2px 2px 8px 0px #282828 !important;
+        }
 
         .icon {
             height: 100px;

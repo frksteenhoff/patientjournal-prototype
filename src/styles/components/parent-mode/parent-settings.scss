@@ -1,8 +1,18 @@
 [data-component="parent-settings"]{
-
     .body {
-        flex: 1 0 auto;  
+        align-items: flex-start;
+        justify-content: flex-start;
         
+        .kid-icon {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0 0 2em;
+            img {
+                height: 4em;
+            }
+        } // .kid-icon
+
         .nav-arrow {
             position: absolute;
             top: 40%;
@@ -32,15 +42,71 @@
             }
         } // .line
 
-        .kid-icon {
+        .kid-details {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 0 0 2em;
-            img {
-                height: 5em;
+            max-height: 60vh;
+            overflow: scroll;
+            .row {
+                padding: 1em 0;
+                border-top: 1px solid $lighter-grey;
+
+                .detail-type {
+                    width: 50%;
+                    padding-left: 2em;
+
+                    span {
+                        font-family: Lato-Regular;
+                        font-size: 16px;
+                        color: $light-grey;
+                    }
+                }
             }
-        } // .kid-icon
+                input {
+                    height: 150px;
+                    padding-right: 2em;
+                   font-family: Lato-Regular;
+                        font-size: 16px;
+                        color: $light-grey;
+                        border-radius: 1px;
+                        padding: 0.25em 0.15em;
+                        border: 1px solid $light-grey;
+                        width: 50%;
+                        margin-left: 25%;
+                    }
+
+                input:focus {
+                            border-color: $red;
+                            box-shadow:inset 0 0 1px 1px $red;
+                            background: #fff;
+                        
+                    }
+                
+            
+            #patient {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 50%;
+                margin: auto;
+            }
+
+            #patient td, #patient th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #patient tr:nth-child(even){background-color: #f2f2f2;}
+
+            .left {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+        } // .kid-details
+       
+            
+        
     } // .body
 
     .footer {
