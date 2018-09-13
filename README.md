@@ -1,5 +1,5 @@
 # Til pigerne:
-For at kunne se hjemmesiden, skal I have hentet projektet ned på jeres egen computer. Det gør I ved at trykke på "Clone/Download" knappen (den grønne).
+For at kunne se hjemmesiden, skal I have hentet projektet ned på jeres egen computer. Det gør I ved at trykke på "clone or download" knappen (den grønne i højre hjørne).
 
 Når I har hentet filerne skal I bare gøre som der står her:
 
