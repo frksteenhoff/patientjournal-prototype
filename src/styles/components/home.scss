@@ -1,11 +1,14 @@
 [data-component="home"]{
-    position: relative;
+    position: center;
     .body {
         flex: 1 0 auto;
         margin-bottom: 4em; 
+        margin-left: 4em;
+        width: 93%;
 
         .column {
             padding: 1em 0;
+
             &:first-child {
                 border-top: 1px solid $lighter-grey;
             }
@@ -33,6 +36,7 @@
         
         .text {
             margin-top: .75em;
+            margin-bottom: .75em;
             font-family: Lato-Regular;
             font-size: 22px;
             color: $light-grey;
