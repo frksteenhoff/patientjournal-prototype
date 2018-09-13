@@ -1,5 +1,11 @@
 # Til pigerne:
+For at kunne se hjemmesiden, skal I have hentet projektet ned på jeres egen computer. Det gør I ved at trykke på "Clone/Download" knappen (den grønne).
+
+Når I har hentet filerne skal I bare gøre som der står her:
+
 * Tryk på filen `index.html` for at åbne projektet.
+* Prøve at trykke på de forskellige knapper og se hvad der sker
+* Når I har fået en forståelse af, hvad I kan i programmet, kan I prøve at lave rettelser selv.
 * For at lave ændringer i farver osv. find filen `style.css`
   * Læs det der står inde i filen, for at finde ud af, hvad I skal ændre :-)
   
