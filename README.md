@@ -11,6 +11,7 @@ Når I har hentet filerne skal I bare gøre som der står her:
   
 Happy coding!
 
+----
 
 ## Prerequisites
   - NodeJS
