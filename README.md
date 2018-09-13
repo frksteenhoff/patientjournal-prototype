@@ -1,3 +1,10 @@
+# Til pigerne:
+* Tryk på filen `index.html` for at åbne projektet.
+* For at lave ændringer i farver osv. find filen `style.css`
+  * Læs det der står inde i filen, for at finde ud af, hvad I skal ændre :-)
+  
+Happy coding!
+
 
 ## Prerequisites
   - NodeJS
@@ -21,7 +28,6 @@ Clean generated dist folder
 ```sh
 $ gulp clean
 ```
-
 
 ## Contributions // acknowledgements
 The design and the basic app architecture was developed by [@fpegios](https://github.com/fpegios) in collaboration with [@frksteenhoff](https://www.github.com/frksteenhoff) and Marianna Tzachsan for a DTU course in the fall of 2018. Most of the logic has been redone, but the design has been reused to a large extent.
