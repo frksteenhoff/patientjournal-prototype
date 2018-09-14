@@ -6,45 +6,115 @@
     <div class="right-action-btn"></div>
 </div>
 
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $.getJSON( "src/scripts/data/patienter.json", function(data) {
+    console.log( "success" );
+    
+    var table = document.getElementById("patient-l");
+    var tbody = document.createElement("tbody");
+
+    // VÆLG HVILKEN PATIENT DER SKAL VISES
+    // 0 er den første
+    var patientAtVise = 2;
+            var tr = document.createElement("tr");
+            var th = document.createElement("th");
+            var thh = document.createTextNode("Navn");
+            var th_ = document.createElement("th");
+            var txt = document.createTextNode(data["patienter"][patientAtVise].navn);
+            th_.appendChild(txt);
+            tr.appendChild(thh);
+            tr.appendChild(th_);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+
+            var tr5 = document.createElement("tr");
+            var th5 = document.createElement("th")
+            var thh5 = document.createTextNode("Adresse");
+            var th5_ = document.createElement("th");
+            var txt5 = document.createTextNode(data["patienter"][patientAtVise].adresse);
+            th5_.appendChild(txt5);
+            tr5.appendChild(thh5);
+            tr5.appendChild(th5_);
+            tbody.appendChild(tr5);
+            table.appendChild(tbody);
+
+            var tr2 = document.createElement("tr");
+            var th2 = document.createElement("th")
+            var thh2 = document.createTextNode("Fødselsdag");
+            var th2_ = document.createElement("th");
+            var txt2 = document.createTextNode(data["patienter"][patientAtVise].fodselsdag);
+            th2_.appendChild(txt2);
+            tr2.appendChild(thh2);
+            tr2.appendChild(th2_);
+            tbody.appendChild(tr2);
+            table.appendChild(tbody);
+
+            var tr6 = document.createElement("tr");
+            var th6 = document.createElement("th")
+            var thh6 = document.createTextNode("Læge");
+            var th6_ = document.createElement("th");
+            var txt6 = document.createTextNode(data["patienter"][patientAtVise].laege);
+            th6_.appendChild(txt6);
+            tr6.appendChild(thh6);
+            tr6.appendChild(th6_);
+            tbody.appendChild(tr6);
+            table.appendChild(tbody);
+
+            var tr3 = document.createElement("tr");
+            var th3 = document.createElement("th")
+            var thh3 = document.createTextNode("Meddelelse");
+            var th3_ = document.createElement("th");
+            var txt3 = document.createTextNode(data["patienter"][patientAtVise].helbred_text);
+            th3_.appendChild(txt3);
+            tr3.appendChild(thh3);
+            tr3.appendChild(th3_);
+            tbody.appendChild(tr3);
+            table.appendChild(tbody);
+
+            var tr4 = document.createElement("tr");
+            var th4 = document.createElement("th")
+            var thh4 = document.createTextNode("Allergier");
+            var th4_ = document.createElement("th");
+            var txt4 = document.createTextNode(data["patienter"][patientAtVise].allergier);
+            th4_.appendChild(txt4);
+            tr4.appendChild(thh4);
+            tr4.appendChild(th4_);
+            tbody.appendChild(tr4);
+            table.appendChild(tbody);
+
+            var tr7 = document.createElement("tr");
+            var th7 = document.createElement("th")
+            var thh7 = document.createTextNode("Tekst fra ambulancefører");
+            var th7_ = document.createElement("th");
+            var txt7 = document.createTextNode(data["patienter"][patientAtVise].ambulance_text);
+            th7_.appendChild(txt7);
+            tr7.appendChild(thh7);
+            tr7.appendChild(th7_);
+            tbody.appendChild(tr7);
+            table.appendChild(tbody);
+    })
+    .done(function() {
+        console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+
+</script>
+
 <div class="body">
     <div class="kid-icon">
         <img class="icon" src="assets/parent-grey.png" alt="">
         <img class="icon" src="assets/mama-grey.png" alt="">
     </div>
     <div class="kid-details">
-        <table id="patient">
-            <tr>
-                <th class="left">Navn</th>
-                <th>PatientNanv</th>
-            </tr>
-            <tr>
-                <th class="left">Adresse</th>
-                <th>Adresse1</th>
-            </tr>
-            <tr>
-                <th class="left">Fødselsdag</th>
-                <th>01/01/2019</th>
-            </tr>
-            <tr>
-                <th class="left">Læge</th>
-                <th>Lægens navn</th>
-            </tr>   
-            <tr>
-                <th class="left">Meddelelse om helbredet</th>
-                <th>Meddelelse</th>
-            </tr>
-            <tr>
-                <th class="left">Allergier</th>
-                <th>Alligerne </th>
-            </tr>'
-            <tr>
-                <th class="left">Andet</th>
-                <th>Noget andet</th>
-            </tr>
-            <tr>
-                <th class="left">Ambulancebesked</th>
-                <th>Beskeder og information fra ambulancen</th>
-            </tr>
+        <table id="patient-l">
+            
         </table>
         <div class="row">
             <div class="detail-type">

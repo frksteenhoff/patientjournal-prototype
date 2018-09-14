@@ -82,19 +82,19 @@
                     }
                 
             
-            #patient {
+            #patient-l {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
                 width: 50%;
                 margin: auto;
             }
 
-            #patient td, #patient th {
+            #patient-l td, #patient-l th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #patient tr:nth-child(even){background-color: #f2f2f2;}
+            #patient-l tr:nth-child(even){background-color: #f2f2f2;}
 
             .left {
                 padding-top: 12px;

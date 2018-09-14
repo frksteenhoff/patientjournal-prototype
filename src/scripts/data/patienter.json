@@ -1,0 +1,44 @@
+{
+    "patienter":[
+        {
+            "navn": "Henriette Steenhoff",
+            "adresse": "Gammel Kongevej 164, Frederiksberg",
+            "fodselsdag": "27-02-1992",
+            "laege": "Helle Rootzen",
+            "helbred_text": "Sund og rask",
+            "skade": "Brækket ben",
+            "allergier": "ingen",
+            "ambulance_text": "Faldet på cyklen"
+        },
+        {
+            "navn": "Ada Lovelace",
+            "adresse": "3 High Street, Sussex",
+            "fodselsdag": "10-12-1815",
+            "laege": "Hans Hansen",
+            "helbred_text": "Genoptræning efter brækket ben",
+            "skade": "Slået hovedet",
+            "allergier": "pollenallergi",
+            "ambulance_text": "Gik ind i en dør"
+        },
+        {
+            "navn": "Steven Hawking",
+            "adresse": "DAMTP, Centre for Mathematical Sciences",
+            "fodselsdag": "08-01-1942",
+            "laege": "Kirsten Vinten",
+            "helbred_text": "Amyotrofisk lateral sklerose - ALS",
+            "skade": "Forstuvet ankel",
+            "allergier": "ingen",
+            "ambulance_text": "Skal have hjælp til at få en rullestol ud af ambulancen."
+        },
+        {
+            "navn": "Rami Malek",
+            "adresse": "Wilshire Blvd. 3rd Floor Beverly Hills, CA 90210",
+            "fodselsdag": "12-05-1981",
+            "laege": "Paul Pop",
+            "helbred_text": "Ryger",
+            "skade": "",
+            "allergier": "ingen",
+            "ambulance_text": "Ingen"
+        }
+    ]
+}

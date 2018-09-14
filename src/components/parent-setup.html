@@ -5,12 +5,66 @@
     <div class="title">journal <span class="parent subtitle">læge</span></div>
     <div class="right-action-btn"></div>
 </div>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $.getJSON( "src/scripts/data/patienter.json", function(data) {
+    console.log( "success" );
+    
+    var table = document.getElementById("patient");
+    var tbody = document.createElement("tbody");
+
+    for (x in data["patienter"]) {
+        var tr = document.createElement("tr");
+        
+            var td = document.createElement("td");
+            var txt = document.createTextNode(data["patienter"][x].navn);
+            td.appendChild(txt);
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+
+            var td2 = document.createElement("td");
+            var txt2 = document.createTextNode(data["patienter"][x].skade);
+            td2.appendChild(txt2);
+            tr.appendChild(td2);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+
+            var td3 = document.createElement("td");
+            var txt3 = document.createTextNode(data["patienter"][x].laege);
+            td3.appendChild(txt3);
+            tr.appendChild(td3);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+
+            var td4 = document.createElement("td");
+            var txt4 = document.createTextNode(data["patienter"][x].ambulance_text);
+            td4.appendChild(txt4);
+            tr.appendChild(td4);
+            tbody.appendChild(tr);
+            table.appendChild(tbody);
+
+        }
+    })
+    .done(function() {
+        console.log( "second success" );
+    })
+    .fail(function() {
+    console.log( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
+
+</script>
 
 <div class="body">
     <div class="kid-icon">
         <img class="icon" src="assets/parent-grey.png" alt="">
         <img class="icon" src="assets/mama-grey.png" alt="">
     </div>
+
     <div class="kid-details">
         <table id="patient">
           <tr>
@@ -19,29 +73,9 @@
             <th>Læge</th>
             <th>Ambulancebesked</th>
           </tr>
-          <tr id="patient1">
-            <td>Navn patient 1</td>
-            <td>Skade Patient 1</td>
-            <td>Læge til patient 1</td>
-            <td>Ambulancebesked 1</td>
-          </tr>
-          <tr id="patient2">
-            <td>Navn patient 2</td>
-            <td>Skade Patient 2</td>
-            <td>Læge til patient 2</td>
-            <td>Ambulancebesked 2</td>
-          </tr>
-          <tr id="patient3">
-            <td>Navn patient 3</td>
-            <td>Skade Patient 3</td>
-            <td>Læge til patient 3</td>
-            <td>Ambulancebesked 3</td>
-          </tr>
         </table>
-
     </div>
 </div>
-
 <div class="footer">
-    <button class="btn red submit">GEM</button>
-</div>
+        <button class="btn red submit">VIDERE</button>
+    </div>

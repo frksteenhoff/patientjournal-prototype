@@ -82,22 +82,22 @@
                     }
                 }
             }
-            #patient {
+            #patient-amb {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
                 width: 100%;
             }
 
-            #patient td, #patient th {
+            #patient-amb td, #patient-amb th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #patient tr:nth-child(even){background-color: #f2f2f2;}
+            #patient-amb tr:nth-child(even){background-color: #f2f2f2;}
 
-            #patient tr:hover {background-color: #ddd; cursor: pointer;}
+            #patient-amb tr:hover {background-color: #ddd; cursor: pointer;}
 
-            #patient th {
+            #patient-amb th {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
