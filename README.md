@@ -6,8 +6,10 @@ Når I har hentet filerne skal I bare gøre som der står her:
 * Tryk på filen `index.html` for at åbne projektet.
 * Prøve at trykke på de forskellige knapper og se hvad der sker
 * Når I har fået en forståelse af, hvad I kan i programmet, kan I prøve at lave rettelser selv.
+
 * For at lave ændringer i farver osv. find filen `style.css`
   * Læs det der står inde i filen, for at finde ud af, hvad I skal ændre :-)
+* For at tilføje flere patienter til listen over patienter, find filen `patienter.json` (i mappen scripts -> data)
   
 Happy coding!
 
