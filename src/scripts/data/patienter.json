@@ -39,6 +39,45 @@
             "skade": "",
             "allergier": "ingen",
             "ambulance_text": "Ingen"
-        }
+        },
+        {
+            "navn": "marta",
+            "adresse": "gammelholtevej 1",
+            "fodselsdag": "071004",
+            "laege": "Louise",
+            "helbred_text": "nej",
+            "skade": "brækket arm",
+            "allergier": "penicilin",
+            "ambulance_text": "hej"
+        },
+    {
+        "navn": "Søren",
+        "adresse": "gammelholtevej 1",
+        "fodselsdag": "220406",
+        "laege": "Jesper Jespersen",
+        "helbred_text": "han skal have pencilin og forbinding på i stedet for plaster. (Fra bruger: ryger, klaustroforbi, atsma, køresyge, angst for læger, skal ALTID have psygolog med sig)",
+        "skade": "glasskår i knæet",
+        "allergier": "gluten, sukker, nødder, nåle, pollen, ananas,laktose og antibiotika",
+        "ambulance_text": "der må ikke være så mange læger omkring ham. Nu er glas skåret fjernet, det er renset og vi har puttet et plaster på. Han har det også OK."
+    },
+    {
+        "navn": "joakim",
+        "adresse": "slovakiet",
+        "fodselsdag": "2604071",
+        "laege": "søren putte",
+        "helbred_text": "han skal i respirater",
+        "skade": "spist af hvidhaj",
+        "allergier": "hajspyt, saltvand og sømad",
+        "ambulance_text": "vi har hjulpet ham med åndedræt, og har stoppet noget af blødningerne. Han har det OK"
+    },
+    {   "navn": "ida",
+        "adresse": "prinsessegade 5A, 2. TV, 1422 København K",
+        "fodselsdag": "010101",
+        "laege": "Klaus Pedersen",
+        "helbred_text": "vi er klar til at operere",
+        "skade": "blodprop",
+        "allergier": "græs, ananas, gluten, laktose",
+        "ambulance_text": ""
+    }
     ]
 }
