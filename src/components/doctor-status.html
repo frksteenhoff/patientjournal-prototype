@@ -1,10 +1,21 @@
-<div class="header"><div class="left-action-btn"><img class="back-btn" src="assets/left-arrow.png" alt=""></div><div class="title">journal <span class="parent subtitle">læge</span></div><div class="right-action-btn"></div></div><script src="https://code.jquery.com/jquery-1.10.2.js"></script><script>$.getJSON( "src/scripts/data/patienter.json", function(data) {
+<div class="header">
+    <div class="left-action-btn">
+        <img class="back-btn" src="assets/left-arrow.png" alt="">
+    </div>
+    <div class="title">journal <span class="doctor subtitle">læge</span></div>
+    <div class="right-action-btn"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+<script>
+    $.getJSON( "src/scripts/data/patienter.json", function(data) {
     console.log( "success" );
     
     var table = document.getElementById("patient-l");
     var tbody = document.createElement("tbody");
 
-    // VÆLG HVILKEN PATIENT DER SKAL VISES
+    // VÆLG HVILKEN PATIENT DER SKAL VISES FRA patienter.json
     // 0 er den første
     var patientAtVise = 5;
             var tr = document.createElement("tr");
@@ -92,4 +103,30 @@
     })
     .always(function() {
       console.log( "complete" );
-    });</script><div class="body"><div class="kid-icon"><img class="icon" src="assets/parent-grey.png" alt=""> <img class="icon" src="assets/mama-grey.png" alt=""></div><div class="kid-details"><table id="patient-l"></table><div class="row"><div class="detail-type"><span>Lægebesked</span></div></div><div><input type="text" name="lægebesked" value="Tilføj yderligere om patienten" height="150" rows="5"></div></div></div><div class="footer"><button class="btn red submit">GEM</button></div>
+    });
+
+</script>
+
+<div class="body">
+    <div class="patient-icon">
+        <img class="icon" src="assets/parent-grey.png" alt="">
+        <img class="icon" src="assets/mama-grey.png" alt="">
+    </div>
+    <div class="patient-details">
+        <table id="patient-l">
+            
+        </table>
+        <div class="row">
+            <div class="detail-type">
+                <span>Lægebesked</span>
+            </div>
+        </div>
+        <div>
+            <input type="text" name="lægebesked" value="Tilføj yderligere om patienten" height="150" rows="5" >
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <button class="btn red submit">GEM</button>
+</div>

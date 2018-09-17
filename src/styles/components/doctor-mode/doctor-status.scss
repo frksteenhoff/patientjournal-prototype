@@ -1,9 +1,9 @@
-[data-component="parent-settings"]{
+[data-component="doctor-status"]{
     .body {
         align-items: flex-start;
         justify-content: flex-start;
         
-        .kid-icon {
+        .patient-icon {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -11,7 +11,7 @@
             img {
                 height: 4em;
             }
-        } // .kid-icon
+        } // .patient-icon
 
         .nav-arrow {
             position: absolute;
@@ -42,7 +42,7 @@
             }
         } // .line
 
-        .kid-details {
+        .patient-details {
             width: 100%;
             max-height: 60vh;
             overflow: scroll;
@@ -82,19 +82,19 @@
                     }
                 
             
-            #patient {
+            #patient-l {
                 font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
                 border-collapse: collapse;
                 width: 50%;
                 margin: auto;
             }
 
-            #patient td, #patient th {
+            #patient-l td, #patient-l th {
                 border: 1px solid #ddd;
                 padding: 8px;
             }
 
-            #patient tr:nth-child(even){background-color: #f2f2f2;}
+            #patient-l tr:nth-child(even){background-color: #f2f2f2;}
 
             .left {
                 padding-top: 12px;
@@ -103,7 +103,7 @@
                 background-color: #4CAF50;
                 color: white;
             }
-        } // .kid-details
+        } // .patient-details
        
             
         

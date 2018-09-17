@@ -3,7 +3,7 @@
         align-items: flex-start;
         justify-content: flex-start;
         
-        .kid-icon {
+        .patient-icon {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -11,7 +11,7 @@
             img {
                 height: 4em;
             }
-        } // .kid-icon
+        } // .patient-icon
 
         .nav-arrow {
             position: absolute;
@@ -42,7 +42,7 @@
             }
         } // .line
 
-        .kid-details {
+        .patient-details {
             width: 93%;
             margin-left: 4em;
             max-height: 60vh;
@@ -104,10 +104,7 @@
                 background-color: #4CAF50;
                 color: white;
             }
-        } // .kid-details
-       
-            
-        
+        } // .patient-details
     } // .body
 
     .footer {

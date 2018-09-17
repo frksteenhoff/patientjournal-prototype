@@ -14,7 +14,7 @@ function getDataComponent(component) {
     return "[data-component=" + component + "]";
 }
 
-// show menu in kid mode only if the kid is teen
+// show menu in patient mode only if the patient is teen
 function showMenu(component) {
     $( getDataComponent(component) + " .footer" ).removeClass("hidden");
 }

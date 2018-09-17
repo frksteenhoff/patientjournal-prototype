@@ -1,4 +1,4 @@
-<div class="header"><div class="left-action-btn"><img class="back-btn" src="assets/left-arrow.png" alt=""></div><div class="title">journal <span class="parent subtitle">læge</span></div><div class="right-action-btn"></div></div><script src="https://code.jquery.com/jquery-1.10.2.js"></script><script>$.getJSON( "src/scripts/data/patienter.json", function(data) {
+<div class="header"><div class="left-action-btn"><img class="back-btn" src="assets/left-arrow.png" alt=""></div><div class="title">journal <span class="doctor subtitle">læge</span></div><div class="right-action-btn"></div></div><script src="https://code.jquery.com/jquery-1.10.2.js"></script><script>$.getJSON( "src/scripts/data/patienter.json", function(data) {
     console.log( "success" );
     
     var table = document.getElementById("patient");
@@ -45,4 +45,4 @@
     })
     .always(function() {
       console.log( "complete" );
-    });</script><div class="body"><div class="kid-icon"><img class="icon" src="assets/parent-grey.png" alt=""> <img class="icon" src="assets/mama-grey.png" alt=""></div><div class="kid-details"><table id="patient"><tr><th>Navn</th><th>Skade</th><th>Læge</th><th>Ambulancebesked</th></tr></table></div></div><div class="footer"><button class="btn red submit">VIDERE</button></div>
+    });</script><div class="body"><div class="patient-icon"><img class="icon" src="assets/parent-grey.png" alt=""> <img class="icon" src="assets/mama-grey.png" alt=""></div><div class="patient-details"><table id="patient"><tr><th>Navn</th><th>Skade</th><th>Læge</th><th>Ambulancebesked</th></tr></table></div></div><div class="footer"><button class="btn red submit">VIDERE</button></div>

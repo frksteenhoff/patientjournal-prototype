@@ -1,9 +1,9 @@
-[data-component="kid-monitor"]{
+[data-component="patient-monitor"]{
     .body {
         flex: 1 0 auto;  
         margin-bottom: 4em;
 
-        .kid-icon {
+        .patient-icon {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -11,7 +11,7 @@
             img {
                 height: 5em;
             }
-        } // .kid-icon
+        } // .patient-icon
     } // .body
 
     .modal {

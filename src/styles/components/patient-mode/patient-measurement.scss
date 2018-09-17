@@ -1,9 +1,9 @@
-[data-component="parent-setup"]{
+[data-component="patient-measurement"]{
     .body {
         align-items: flex-start;
         justify-content: flex-start;
         
-        .kid-icon {
+        .patient-icon {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -11,7 +11,7 @@
             img {
                 height: 4em;
             }
-        } // .kid-icon
+        } // .patient-icon
 
         .nav-arrow {
             position: absolute;
@@ -42,11 +42,10 @@
             }
         } // .line
 
-        .kid-details {
-            margin: 4em;
+        .patient-details {
             width: 93%;
-            max-height: 60vh;
-            overflow: scroll;
+            margin-left: 4em;
+
             .row {
                 padding: 1em 0;
                 border-top: 1px solid $lighter-grey;
@@ -82,32 +81,7 @@
                     }
                 }
             }
-            #patient {
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            #patient td, #patient th {
-                border: 1px solid #ddd;
-                padding: 8px;
-            }
-
-            #patient tr:nth-child(even){background-color: #f2f2f2;}
-
-            #patient tr:hover {background-color: #ddd; cursor: pointer;}
-
-            #patient th {
-                padding-top: 12px;
-                padding-bottom: 12px;
-                text-align: left;
-                background-color: #4CAF50;
-                color: white;
-            }
-        } // .kid-details
-       
-            
-        
+        } // .patient-details
     } // .body
 
     .footer {

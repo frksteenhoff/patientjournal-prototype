@@ -10,10 +10,9 @@
 @import 'components/ambulance-mode/ambulance-mode.scss';
 
 // Patient mode styles
-@import 'components/kid-mode/kid-monitor.scss';
-@import 'components/kid-mode/kid-measurement.scss';
+@import 'components/patient-mode/patient-monitor.scss';
+@import 'components/patient-mode/patient-measurement.scss';
 
 // Læge mode styles
-@import 'components/parent-mode/parent-setup.scss';
-@import 'components/parent-mode/parent-status.scss';
-@import 'components/parent-mode/parent-settings.scss';
+@import 'components/doctor-mode/doctor-setup.scss';
+@import 'components/doctor-mode/doctor-status.scss';

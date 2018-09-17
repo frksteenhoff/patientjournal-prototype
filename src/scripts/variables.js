@@ -1,10 +1,10 @@
-currentMode = "parent";
+currentMode = "doctor";
 
 var injectionNotificationTimeout;
 var measurementNotificationTimeout;
 
-// Kid details
-var kid = {
+// patient details
+var patient = {
     active: false,
     name:"",
     age:"",

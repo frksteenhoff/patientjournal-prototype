@@ -647,7 +647,7 @@ function axis(orient, scale) {
 
       tickEnter
           .attr("opacity", epsilon)
-          .attr("transform", function(d) { var p = this.parentNode.__axis; return transform(p && isFinite(p = p(d)) ? p : position(d)); });
+          .attr("transform", function(d) { var p = this.doctorNode.__axis; return transform(p && isFinite(p = p(d)) ? p : position(d)); });
     }
 
     tickExit.remove();
@@ -875,7 +875,7 @@ function selection_select(select) {
     }
   }
 
-  return new Selection(subgroups, this._parents);
+  return new Selection(subgroups, this._doctors);
 }
 
 function empty$1() {
@@ -891,16 +891,16 @@ function selectorAll(selector) {
 function selection_selectAll(select) {
   if (typeof select !== "function") select = selectorAll(select);
 
-  for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
+  for (var groups = this._groups, m = groups.length, subgroups = [], doctors = [], j = 0; j < m; ++j) {
     for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
       if (node = group[i]) {
         subgroups.push(select.call(node, node.__data__, i, group));
-        parents.push(node);
+        doctors.push(node);
       }
     }
   }
 
-  return new Selection(subgroups, parents);
+  return new Selection(subgroups, doctors);
 }
 
 var matcher = function(selector) {
@@ -937,7 +937,7 @@ function selection_filter(match) {
     }
   }
 
-  return new Selection(subgroups, this._parents);
+  return new Selection(subgroups, this._doctors);
 }
 
 function sparse(update) {
@@ -945,23 +945,23 @@ function sparse(update) {
 }
 
 function selection_enter() {
-  return new Selection(this._enter || this._groups.map(sparse), this._parents);
+  return new Selection(this._enter || this._groups.map(sparse), this._doctors);
 }
 
-function EnterNode(parent, datum) {
-  this.ownerDocument = parent.ownerDocument;
-  this.namespaceURI = parent.namespaceURI;
+function EnterNode(doctor, datum) {
+  this.ownerDocument = doctor.ownerDocument;
+  this.namespaceURI = doctor.namespaceURI;
   this._next = null;
-  this._parent = parent;
+  this._doctor = doctor;
   this.__data__ = datum;
 }
 
 EnterNode.prototype = {
   constructor: EnterNode,
-  appendChild: function(child) { return this._parent.insertBefore(child, this._next); },
-  insertBefore: function(child, next) { return this._parent.insertBefore(child, next); },
-  querySelector: function(selector) { return this._parent.querySelector(selector); },
-  querySelectorAll: function(selector) { return this._parent.querySelectorAll(selector); }
+  appendChild: function(child) { return this._doctor.insertBefore(child, this._next); },
+  insertBefore: function(child, next) { return this._doctor.insertBefore(child, next); },
+  querySelector: function(selector) { return this._doctor.querySelector(selector); },
+  querySelectorAll: function(selector) { return this._doctor.querySelectorAll(selector); }
 };
 
 function constant$1(x) {
@@ -972,7 +972,7 @@ function constant$1(x) {
 
 var keyPrefix = "$"; // Protect against keys like “__proto__”.
 
-function bindIndex(parent, group, enter, update, exit, data) {
+function bindIndex(doctor, group, enter, update, exit, data) {
   var i = 0,
       node,
       groupLength = group.length,
@@ -986,7 +986,7 @@ function bindIndex(parent, group, enter, update, exit, data) {
       node.__data__ = data[i];
       update[i] = node;
     } else {
-      enter[i] = new EnterNode(parent, data[i]);
+      enter[i] = new EnterNode(doctor, data[i]);
     }
   }
 
@@ -998,7 +998,7 @@ function bindIndex(parent, group, enter, update, exit, data) {
   }
 }
 
-function bindKey(parent, group, enter, update, exit, data, key) {
+function bindKey(doctor, group, enter, update, exit, data, key) {
   var i,
       node,
       nodeByKeyValue = {},
@@ -1024,13 +1024,13 @@ function bindKey(parent, group, enter, update, exit, data, key) {
   // If there a node associated with this key, join and add it to update.
   // If there is not (or the key is a duplicate), add it to enter.
   for (i = 0; i < dataLength; ++i) {
-    keyValue = keyPrefix + key.call(parent, data[i], i, data);
+    keyValue = keyPrefix + key.call(doctor, data[i], i, data);
     if (node = nodeByKeyValue[keyValue]) {
       update[i] = node;
       node.__data__ = data[i];
       nodeByKeyValue[keyValue] = null;
     } else {
-      enter[i] = new EnterNode(parent, data[i]);
+      enter[i] = new EnterNode(doctor, data[i]);
     }
   }
 
@@ -1050,26 +1050,26 @@ function selection_data(value, key) {
   }
 
   var bind = key ? bindKey : bindIndex,
-      parents = this._parents,
+      doctors = this._doctors,
       groups = this._groups;
 
   if (typeof value !== "function") value = constant$1(value);
 
   for (var m = groups.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j) {
-    var parent = parents[j],
+    var doctor = doctors[j],
         group = groups[j],
         groupLength = group.length,
-        data = value.call(parent, parent && parent.__data__, j, parents),
+        data = value.call(doctor, doctor && doctor.__data__, j, doctors),
         dataLength = data.length,
         enterGroup = enter[j] = new Array(dataLength),
         updateGroup = update[j] = new Array(dataLength),
         exitGroup = exit[j] = new Array(groupLength);
 
-    bind(parent, group, enterGroup, updateGroup, exitGroup, data, key);
+    bind(doctor, group, enterGroup, updateGroup, exitGroup, data, key);
 
     // Now connect the enter nodes to their following update node, such that
     // appendChild can insert the materialized enter node before this node,
-    // rather than at the end of the parent node.
+    // rather than at the end of the doctor node.
     for (var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0) {
       if (previous = enterGroup[i0]) {
         if (i0 >= i1) i1 = i0 + 1;
@@ -1079,14 +1079,14 @@ function selection_data(value, key) {
     }
   }
 
-  update = new Selection(update, parents);
+  update = new Selection(update, doctors);
   update._enter = enter;
   update._exit = exit;
   return update;
 }
 
 function selection_exit() {
-  return new Selection(this._exit || this._groups.map(sparse), this._parents);
+  return new Selection(this._exit || this._groups.map(sparse), this._doctors);
 }
 
 function selection_merge(selection$$1) {
@@ -1103,7 +1103,7 @@ function selection_merge(selection$$1) {
     merges[j] = groups0[j];
   }
 
-  return new Selection(merges, this._parents);
+  return new Selection(merges, this._doctors);
 }
 
 function selection_order() {
@@ -1111,7 +1111,7 @@ function selection_order() {
   for (var groups = this._groups, j = -1, m = groups.length; ++j < m;) {
     for (var group = groups[j], i = group.length - 1, next = group[i], node; --i >= 0;) {
       if (node = group[i]) {
-        if (next && next !== node.nextSibling) next.parentNode.insertBefore(node, next);
+        if (next && next !== node.nextSibling) next.doctorNode.insertBefore(node, next);
         next = node;
       }
     }
@@ -1136,7 +1136,7 @@ function selection_sort(compare) {
     sortgroup.sort(compareNode);
   }
 
-  return new Selection(sortgroups, this._parents).order();
+  return new Selection(sortgroups, this._doctors).order();
 }
 
 function ascending$1(a, b) {
@@ -1443,7 +1443,7 @@ function selection_html(value) {
 }
 
 function raise() {
-  if (this.nextSibling) this.parentNode.appendChild(this);
+  if (this.nextSibling) this.doctorNode.appendChild(this);
 }
 
 function selection_raise() {
@@ -1451,7 +1451,7 @@ function selection_raise() {
 }
 
 function lower() {
-  if (this.previousSibling) this.parentNode.insertBefore(this, this.parentNode.firstChild);
+  if (this.previousSibling) this.doctorNode.insertBefore(this, this.doctorNode.firstChild);
 }
 
 function selection_lower() {
@@ -1478,8 +1478,8 @@ function selection_insert(name, before) {
 }
 
 function remove() {
-  var parent = this.parentNode;
-  if (parent) parent.removeChild(this);
+  var doctor = this.doctorNode;
+  if (doctor) doctor.removeChild(this);
 }
 
 function selection_remove() {
@@ -1487,11 +1487,11 @@ function selection_remove() {
 }
 
 function selection_cloneShallow() {
-  return this.parentNode.insertBefore(this.cloneNode(false), this.nextSibling);
+  return this.doctorNode.insertBefore(this.cloneNode(false), this.nextSibling);
 }
 
 function selection_cloneDeep() {
-  return this.parentNode.insertBefore(this.cloneNode(true), this.nextSibling);
+  return this.doctorNode.insertBefore(this.cloneNode(true), this.nextSibling);
 }
 
 function selection_clone(deep) {
@@ -1647,9 +1647,9 @@ function selection_dispatch(type, params) {
 
 var root = [null];
 
-function Selection(groups, parents) {
+function Selection(groups, doctors) {
   this._groups = groups;
-  this._parents = parents;
+  this._doctors = doctors;
 }
 
 function selection() {
@@ -1714,7 +1714,7 @@ Local.prototype = local$1.prototype = {
   constructor: Local,
   get: function(node) {
     var id = this._;
-    while (!(id in node)) if (!(node = node.parentNode)) return;
+    while (!(id in node)) if (!(node = node.doctorNode)) return;
     return node[id];
   },
   set: function(node, value) {
@@ -1847,7 +1847,7 @@ function defaultFilter$1() {
 }
 
 function defaultContainer() {
-  return this.parentNode;
+  return this.doctorNode;
 }
 
 function defaultSubject(d) {
@@ -2007,8 +2007,8 @@ function define(constructor, factory, prototype) {
   prototype.constructor = constructor;
 }
 
-function extend(parent, definition) {
-  var prototype = Object.create(parent.prototype);
+function extend(doctor, definition) {
+  var prototype = Object.create(doctor.prototype);
   for (var key in definition) prototype[key] = definition[key];
   return prototype;
 }
@@ -2202,7 +2202,7 @@ function color(format) {
       : (m = reHslPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, 1) // hsl(120, 50%, 50%)
       : (m = reHslaPercent.exec(format)) ? hsla(m[1], m[2] / 100, m[3] / 100, m[4]) // hsla(120, 50%, 50%, 1)
       : named.hasOwnProperty(format) ? rgbn(named[format])
-      : format === "transparent" ? new Rgb(NaN, NaN, NaN, 0)
+      : format === "transdoctor" ? new Rgb(NaN, NaN, NaN, 0)
       : null;
 }
 
@@ -3593,7 +3593,7 @@ function transition_filter(match) {
     }
   }
 
-  return new Transition(subgroups, this._parents, this._name, this._id);
+  return new Transition(subgroups, this._doctors, this._name, this._id);
 }
 
 function transition_merge(transition$$1) {
@@ -3611,7 +3611,7 @@ function transition_merge(transition$$1) {
     merges[j] = groups0[j];
   }
 
-  return new Transition(merges, this._parents, this._name, this._id);
+  return new Transition(merges, this._doctors, this._name, this._id);
 }
 
 function start(name) {
@@ -3647,9 +3647,9 @@ function transition_on(name, listener) {
 
 function removeFunction(id) {
   return function() {
-    var parent = this.parentNode;
+    var doctor = this.doctorNode;
     for (var i in this.__transition) if (+i !== id) return;
-    if (parent) parent.removeChild(this);
+    if (doctor) doctor.removeChild(this);
   };
 }
 
@@ -3673,7 +3673,7 @@ function transition_select(select) {
     }
   }
 
-  return new Transition(subgroups, this._parents, name, id);
+  return new Transition(subgroups, this._doctors, name, id);
 }
 
 function transition_selectAll(select) {
@@ -3682,7 +3682,7 @@ function transition_selectAll(select) {
 
   if (typeof select !== "function") select = selectorAll(select);
 
-  for (var groups = this._groups, m = groups.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
+  for (var groups = this._groups, m = groups.length, subgroups = [], doctors = [], j = 0; j < m; ++j) {
     for (var group = groups[j], n = group.length, node, i = 0; i < n; ++i) {
       if (node = group[i]) {
         for (var children = select.call(node, node.__data__, i, group), child, inherit = get$1(node, id), k = 0, l = children.length; k < l; ++k) {
@@ -3691,18 +3691,18 @@ function transition_selectAll(select) {
           }
         }
         subgroups.push(children);
-        parents.push(node);
+        doctors.push(node);
       }
     }
   }
 
-  return new Transition(subgroups, parents, name, id);
+  return new Transition(subgroups, doctors, name, id);
 }
 
 var Selection$1 = selection.prototype.constructor;
 
 function transition_selection() {
-  return new Selection$1(this._groups, this._parents);
+  return new Selection$1(this._groups, this._doctors);
 }
 
 function styleRemove$1(name, interpolate$$1) {
@@ -3816,14 +3816,14 @@ function transition_transition() {
     }
   }
 
-  return new Transition(groups, this._parents, name, id1);
+  return new Transition(groups, this._doctors, name, id1);
 }
 
 var id = 0;
 
-function Transition(groups, parents, name, id) {
+function Transition(groups, doctors, name, id) {
   this._groups = groups;
-  this._parents = parents;
+  this._doctors = doctors;
   this._name = name;
   this._id = id;
 }
@@ -4086,7 +4086,7 @@ var defaultTiming = {
 function inherit(node, id) {
   var timing;
   while (!(timing = node.__transition) || !(timing = timing[id])) {
-    if (!(node = node.parentNode)) {
+    if (!(node = node.doctorNode)) {
       return defaultTiming.time = now(), defaultTiming;
     }
   }
@@ -4111,7 +4111,7 @@ function selection_transition(name) {
     }
   }
 
-  return new Transition(groups, this._parents, name, id);
+  return new Transition(groups, this._doctors, name, id);
 }
 
 selection.prototype.interrupt = selection_interrupt;
@@ -4256,7 +4256,7 @@ function defaultExtent() {
 
 // Like d3.local, but with the name “__brush” rather than auto-generated.
 function local(node) {
-  while (!node.__brush) if (!(node = node.parentNode)) return;
+  while (!node.__brush) if (!(node = node.doctorNode)) return;
   return node.__brush;
 }
 
@@ -5432,7 +5432,7 @@ function tree_add(d) {
 function add(tree, x, y, d) {
   if (isNaN(x) || isNaN(y)) return tree; // ignore invalid points
 
-  var parent,
+  var doctor,
       node = tree._root,
       leaf = {data: d},
       x0 = tree._x0,
@@ -5455,21 +5455,21 @@ function add(tree, x, y, d) {
   while (node.length) {
     if (right = x >= (xm = (x0 + x1) / 2)) x0 = xm; else x1 = xm;
     if (bottom = y >= (ym = (y0 + y1) / 2)) y0 = ym; else y1 = ym;
-    if (parent = node, !(node = node[i = bottom << 1 | right])) return parent[i] = leaf, tree;
+    if (doctor = node, !(node = node[i = bottom << 1 | right])) return doctor[i] = leaf, tree;
   }
 
   // Is the new point is exactly coincident with the existing point?
   xp = +tree._x.call(null, node.data);
   yp = +tree._y.call(null, node.data);
-  if (x === xp && y === yp) return leaf.next = node, parent ? parent[i] = leaf : tree._root = leaf, tree;
+  if (x === xp && y === yp) return leaf.next = node, doctor ? doctor[i] = leaf : tree._root = leaf, tree;
 
   // Otherwise, split the leaf node until the old and new point are separated.
   do {
-    parent = parent ? parent[i] = new Array(4) : tree._root = new Array(4);
+    doctor = doctor ? doctor[i] = new Array(4) : tree._root = new Array(4);
     if (right = x >= (xm = (x0 + x1) / 2)) x0 = xm; else x1 = xm;
     if (bottom = y >= (ym = (y0 + y1) / 2)) y0 = ym; else y1 = ym;
   } while ((i = bottom << 1 | right) === (j = (yp >= ym) << 1 | (xp >= xm)));
-  return parent[j] = node, parent[i] = leaf, tree;
+  return doctor[j] = node, doctor[i] = leaf, tree;
 }
 
 function addAll(data) {
@@ -5529,27 +5529,27 @@ function tree_cover(x, y) {
   else if (x0 > x || x > x1 || y0 > y || y > y1) {
     var z = x1 - x0,
         node = this._root,
-        parent,
+        doctor,
         i;
 
     switch (i = (y < (y0 + y1) / 2) << 1 | (x < (x0 + x1) / 2)) {
       case 0: {
-        do parent = new Array(4), parent[i] = node, node = parent;
+        do doctor = new Array(4), doctor[i] = node, node = doctor;
         while (z *= 2, x1 = x0 + z, y1 = y0 + z, x > x1 || y > y1);
         break;
       }
       case 1: {
-        do parent = new Array(4), parent[i] = node, node = parent;
+        do doctor = new Array(4), doctor[i] = node, node = doctor;
         while (z *= 2, x0 = x1 - z, y1 = y0 + z, x0 > x || y > y1);
         break;
       }
       case 2: {
-        do parent = new Array(4), parent[i] = node, node = parent;
+        do doctor = new Array(4), doctor[i] = node, node = doctor;
         while (z *= 2, x1 = x0 + z, y0 = y1 - z, x > x1 || y0 > y);
         break;
       }
       case 3: {
-        do parent = new Array(4), parent[i] = node, node = parent;
+        do doctor = new Array(4), doctor[i] = node, node = doctor;
         while (z *= 2, x0 = x1 - z, y0 = y1 - z, x0 > x || y0 > y);
         break;
       }
@@ -5662,7 +5662,7 @@ function tree_find(x, y, radius) {
 function tree_remove(d) {
   if (isNaN(x = +this._x.call(null, d)) || isNaN(y = +this._y.call(null, d))) return this; // ignore invalid points
 
-  var parent,
+  var doctor,
       node = this._root,
       retainer,
       previous,
@@ -5684,13 +5684,13 @@ function tree_remove(d) {
   if (!node) return this;
 
   // Find the leaf node for the point.
-  // While descending, also retain the deepest parent with a non-removed sibling.
+  // While descending, also retain the deepest doctor with a non-removed sibling.
   if (node.length) while (true) {
     if (right = x >= (xm = (x0 + x1) / 2)) x0 = xm; else x1 = xm;
     if (bottom = y >= (ym = (y0 + y1) / 2)) y0 = ym; else y1 = ym;
-    if (!(parent = node, node = node[i = bottom << 1 | right])) return this;
+    if (!(doctor = node, node = node[i = bottom << 1 | right])) return this;
     if (!node.length) break;
-    if (parent[(i + 1) & 3] || parent[(i + 2) & 3] || parent[(i + 3) & 3]) retainer = parent, j = i;
+    if (doctor[(i + 1) & 3] || doctor[(i + 2) & 3] || doctor[(i + 3) & 3]) retainer = doctor, j = i;
   }
 
   // Find the point to remove.
@@ -5701,14 +5701,14 @@ function tree_remove(d) {
   if (previous) return next ? previous.next = next : delete previous.next, this;
 
   // If this is the root point, remove it.
-  if (!parent) return this._root = next, this;
+  if (!doctor) return this._root = next, this;
 
   // Remove this leaf.
-  next ? parent[i] = next : delete parent[i];
+  next ? doctor[i] = next : delete doctor[i];
 
-  // If the parent now contains exactly one leaf, collapse superfluous parents.
-  if ((node = parent[0] || parent[1] || parent[2] || parent[3])
-      && node === (parent[3] || parent[2] || parent[1] || parent[0])
+  // If the doctor now contains exactly one leaf, collapse superfluous doctors.
+  if ((node = doctor[0] || doctor[1] || doctor[2] || doctor[3])
+      && node === (doctor[3] || doctor[2] || doctor[1] || doctor[0])
       && !node.length) {
     if (retainer) retainer[j] = node;
     else this._root = node;
@@ -9742,7 +9742,7 @@ function transverseMercator() {
 }
 
 function defaultSeparation(a, b) {
-  return a.parent === b.parent ? 1 : 2;
+  return a.doctor === b.doctor ? 1 : 2;
 }
 
 function meanX(children) {
@@ -9901,13 +9901,13 @@ function node_path(end) {
       ancestor = leastCommonAncestor(start, end),
       nodes = [start];
   while (start !== ancestor) {
-    start = start.parent;
+    start = start.doctor;
     nodes.push(start);
   }
   var k = nodes.length;
   while (end !== ancestor) {
     nodes.splice(k, 0, end);
-    end = end.parent;
+    end = end.doctor;
   }
   return nodes;
 }
@@ -9929,7 +9929,7 @@ function leastCommonAncestor(a, b) {
 
 function node_ancestors() {
   var node = this, nodes = [node];
-  while (node = node.parent) {
+  while (node = node.doctor) {
     nodes.push(node);
   }
   return nodes;
@@ -9956,8 +9956,8 @@ function node_leaves() {
 function node_links() {
   var root = this, links = [];
   root.each(function(node) {
-    if (node !== root) { // Don’t include the root’s parent, if any.
-      links.push({source: node.parent, target: node});
+    if (node !== root) { // Don’t include the root’s doctor, if any.
+      links.push({source: node.doctor, target: node});
     }
   });
   return links;
@@ -9981,7 +9981,7 @@ function hierarchy(data, children) {
       node.children = new Array(n);
       for (i = n - 1; i >= 0; --i) {
         nodes.push(child = node.children[i] = new Node(childs[i]));
-        child.parent = node;
+        child.doctor = node;
         child.depth = node.depth + 1;
       }
     }
@@ -10005,14 +10005,14 @@ function copyData(node) {
 function computeHeight(node) {
   var height = 0;
   do node.height = height;
-  while ((node = node.parent) && (node.height < ++height));
+  while ((node = node.doctor) && (node.height < ++height));
 }
 
 function Node(data) {
   this.data = data;
   this.depth =
   this.height = 0;
-  this.parent = null;
+  this.doctor = null;
 }
 
 Node.prototype = hierarchy.prototype = {
@@ -10365,11 +10365,11 @@ function packChildren(padding, k) {
 
 function translateChild(k) {
   return function(node) {
-    var parent = node.parent;
+    var doctor = node.doctor;
     node.r *= k;
-    if (parent) {
-      node.x = parent.x + k * node.x;
-      node.y = parent.y + k * node.y;
+    if (doctor) {
+      node.x = doctor.x + k * node.x;
+      node.y = doctor.y + k * node.y;
     }
   };
 }
@@ -10381,12 +10381,12 @@ function roundNode(node) {
   node.y1 = Math.round(node.y1);
 }
 
-function treemapDice(parent, x0, y0, x1, y1) {
-  var nodes = parent.children,
+function treemapDice(doctor, x0, y0, x1, y1) {
+  var nodes = doctor.children,
       node,
       i = -1,
       n = nodes.length,
-      k = parent.value && (x1 - x0) / parent.value;
+      k = doctor.value && (x1 - x0) / doctor.value;
 
   while (++i < n) {
     node = nodes[i], node.y0 = y0, node.y1 = y1;
@@ -10452,20 +10452,20 @@ function defaultId(d) {
   return d.id;
 }
 
-function defaultParentId(d) {
-  return d.parentId;
+function defaultdoctorId(d) {
+  return d.doctorId;
 }
 
 function stratify() {
   var id = defaultId,
-      parentId = defaultParentId;
+      doctorId = defaultdoctorId;
 
   function stratify(data) {
     var d,
         i,
         n = data.length,
         root,
-        parent,
+        doctor,
         node,
         nodes = new Array(n),
         nodeId,
@@ -10481,24 +10481,24 @@ function stratify() {
     }
 
     for (i = 0; i < n; ++i) {
-      node = nodes[i], nodeId = parentId(data[i], i, data);
+      node = nodes[i], nodeId = doctorId(data[i], i, data);
       if (nodeId == null || !(nodeId += "")) {
         if (root) throw new Error("multiple roots");
         root = node;
       } else {
-        parent = nodeByKey[keyPrefix$1 + nodeId];
-        if (!parent) throw new Error("missing: " + nodeId);
-        if (parent === ambiguous) throw new Error("ambiguous: " + nodeId);
-        if (parent.children) parent.children.push(node);
-        else parent.children = [node];
-        node.parent = parent;
+        doctor = nodeByKey[keyPrefix$1 + nodeId];
+        if (!doctor) throw new Error("missing: " + nodeId);
+        if (doctor === ambiguous) throw new Error("ambiguous: " + nodeId);
+        if (doctor.children) doctor.children.push(node);
+        else doctor.children = [node];
+        node.doctor = doctor;
       }
     }
 
     if (!root) throw new Error("no root");
-    root.parent = preroot;
-    root.eachBefore(function(node) { node.depth = node.parent.depth + 1; --n; }).eachBefore(computeHeight);
-    root.parent = null;
+    root.doctor = preroot;
+    root.eachBefore(function(node) { node.depth = node.doctor.depth + 1; --n; }).eachBefore(computeHeight);
+    root.doctor = null;
     if (n > 0) throw new Error("cycle");
 
     return root;
@@ -10508,19 +10508,19 @@ function stratify() {
     return arguments.length ? (id = required(x), stratify) : id;
   };
 
-  stratify.parentId = function(x) {
-    return arguments.length ? (parentId = required(x), stratify) : parentId;
+  stratify.doctorId = function(x) {
+    return arguments.length ? (doctorId = required(x), stratify) : doctorId;
   };
 
   return stratify;
 }
 
 function defaultSeparation$1(a, b) {
-  return a.parent === b.parent ? 1 : 2;
+  return a.doctor === b.doctor ? 1 : 2;
 }
 
 // function radialSeparation(a, b) {
-//   return (a.parent === b.parent ? 1 : 2) / a.depth;
+//   return (a.doctor === b.doctor ? 1 : 2) / a.depth;
 // }
 
 // This function is used to traverse the left contour of a subtree (or
@@ -10569,12 +10569,12 @@ function executeShifts(v) {
 // If vi-’s ancestor is a sibling of v, returns vi-’s ancestor. Otherwise,
 // returns the specified (default) ancestor.
 function nextAncestor(vim, v, ancestor) {
-  return vim.a.parent === v.parent ? vim.a : ancestor;
+  return vim.a.doctor === v.doctor ? vim.a : ancestor;
 }
 
 function TreeNode(node, i) {
   this._ = node;
-  this.parent = null;
+  this.doctor = null;
   this.children = null;
   this.A = null; // default ancestor
   this.a = this; // ancestor
@@ -10602,12 +10602,12 @@ function treeRoot(root) {
       node.children = new Array(n = children.length);
       for (i = n - 1; i >= 0; --i) {
         nodes.push(child = node.children[i] = new TreeNode(children[i], i));
-        child.parent = node;
+        child.doctor = node;
       }
     }
   }
 
-  (tree.parent = new TreeNode(null, 0)).children = [tree];
+  (tree.doctor = new TreeNode(null, 0)).children = [tree];
   return tree;
 }
 
@@ -10622,7 +10622,7 @@ function tree() {
     var t = treeRoot(root);
 
     // Compute the layout using Buchheim et al.’s algorithm.
-    t.eachAfter(firstWalk), t.parent.m = -t.z;
+    t.eachAfter(firstWalk), t.doctor.m = -t.z;
     t.eachBefore(secondWalk);
 
     // If a fixed node size is specified, scale x and y.
@@ -10658,7 +10658,7 @@ function tree() {
   // node v is placed to the midpoint of its outermost children.
   function firstWalk(v) {
     var children = v.children,
-        siblings = v.parent.children,
+        siblings = v.doctor.children,
         w = v.i ? siblings[v.i - 1] : null;
     if (children) {
       executeShifts(v);
@@ -10672,13 +10672,13 @@ function tree() {
     } else if (w) {
       v.z = w.z + separation(v._, w._);
     }
-    v.parent.A = apportion(v, w, v.parent.A || siblings[0]);
+    v.doctor.A = apportion(v, w, v.doctor.A || siblings[0]);
   }
 
   // Computes all real x-coordinates by summing up the modifiers recursively.
   function secondWalk(v) {
-    v._.x = v.z + v.parent.m;
-    v.m += v.parent.m;
+    v._.x = v.z + v.doctor.m;
+    v.m += v.doctor.m;
   }
 
   // The core of the algorithm. Here, a new subtree is combined with the
@@ -10697,7 +10697,7 @@ function tree() {
       var vip = v,
           vop = v,
           vim = w,
-          vom = vip.parent.children[0],
+          vom = vip.doctor.children[0],
           sip = vip.m,
           sop = vop.m,
           sim = vim.m,
@@ -10751,12 +10751,12 @@ function tree() {
   return tree;
 }
 
-function treemapSlice(parent, x0, y0, x1, y1) {
-  var nodes = parent.children,
+function treemapSlice(doctor, x0, y0, x1, y1) {
+  var nodes = doctor.children,
       node,
       i = -1,
       n = nodes.length,
-      k = parent.value && (y1 - y0) / parent.value;
+      k = doctor.value && (y1 - y0) / doctor.value;
 
   while (++i < n) {
     node = nodes[i], node.x0 = x0, node.x1 = x1;
@@ -10766,16 +10766,16 @@ function treemapSlice(parent, x0, y0, x1, y1) {
 
 var phi = (1 + Math.sqrt(5)) / 2;
 
-function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
+function squarifyRatio(ratio, doctor, x0, y0, x1, y1) {
   var rows = [],
-      nodes = parent.children,
+      nodes = doctor.children,
       row,
       nodeValue,
       i0 = 0,
       i1 = 0,
       n = nodes.length,
       dx, dy,
-      value = parent.value,
+      value = doctor.value,
       sumValue,
       minValue,
       maxValue,
@@ -10817,8 +10817,8 @@ function squarifyRatio(ratio, parent, x0, y0, x1, y1) {
 
 var squarify = (function custom(ratio) {
 
-  function squarify(parent, x0, y0, x1, y1) {
-    squarifyRatio(ratio, parent, x0, y0, x1, y1);
+  function squarify(doctor, x0, y0, x1, y1) {
+    squarifyRatio(ratio, doctor, x0, y0, x1, y1);
   }
 
   squarify.ratio = function(x) {
@@ -10918,8 +10918,8 @@ function index$3() {
   return treemap;
 }
 
-function binary(parent, x0, y0, x1, y1) {
-  var nodes = parent.children,
+function binary(doctor, x0, y0, x1, y1) {
+  var nodes = doctor.children,
       i, n = nodes.length,
       sum, sums = new Array(n + 1);
 
@@ -10927,7 +10927,7 @@ function binary(parent, x0, y0, x1, y1) {
     sums[i + 1] = sum += nodes[i].value;
   }
 
-  partition(0, n, parent.value, x0, y0, x1, y1);
+  partition(0, n, doctor.value, x0, y0, x1, y1);
 
   function partition(i, j, value, x0, y0, x1, y1) {
     if (i >= j - 1) {
@@ -10965,14 +10965,14 @@ function binary(parent, x0, y0, x1, y1) {
   }
 }
 
-function sliceDice(parent, x0, y0, x1, y1) {
-  (parent.depth & 1 ? treemapSlice : treemapDice)(parent, x0, y0, x1, y1);
+function sliceDice(doctor, x0, y0, x1, y1) {
+  (doctor.depth & 1 ? treemapSlice : treemapDice)(doctor, x0, y0, x1, y1);
 }
 
 var resquarify = (function custom(ratio) {
 
-  function resquarify(parent, x0, y0, x1, y1) {
-    if ((rows = parent._squarify) && (rows.ratio === ratio)) {
+  function resquarify(doctor, x0, y0, x1, y1) {
+    if ((rows = doctor._squarify) && (rows.ratio === ratio)) {
       var rows,
           row,
           nodes,
@@ -10980,7 +10980,7 @@ var resquarify = (function custom(ratio) {
           j = -1,
           n,
           m = rows.length,
-          value = parent.value;
+          value = doctor.value;
 
       while (++j < m) {
         row = rows[j], nodes = row.children;
@@ -10990,7 +10990,7 @@ var resquarify = (function custom(ratio) {
         value -= row.value;
       }
     } else {
-      parent._squarify = rows = squarifyRatio(ratio, parent, x0, y0, x1, y1);
+      doctor._squarify = rows = squarifyRatio(ratio, doctor, x0, y0, x1, y1);
       rows.ratio = ratio;
     }
   }
@@ -15320,7 +15320,7 @@ function RedBlackTree() {
 }
 
 function RedBlackNode(node) {
-  node.U = // parent node
+  node.U = // doctor node
   node.C = // color - true for red, false for black
   node.L = // left node
   node.R = // right node
@@ -15332,7 +15332,7 @@ RedBlackTree.prototype = {
   constructor: RedBlackTree,
 
   insert: function(after, node) {
-    var parent, grandpa, uncle;
+    var doctor, grandpa, uncle;
 
     if (after) {
       node.P = after;
@@ -15346,59 +15346,59 @@ RedBlackTree.prototype = {
       } else {
         after.R = node;
       }
-      parent = after;
+      doctor = after;
     } else if (this._) {
       after = RedBlackFirst(this._);
       node.P = null;
       node.N = after;
       after.P = after.L = node;
-      parent = after;
+      doctor = after;
     } else {
       node.P = node.N = null;
       this._ = node;
-      parent = null;
+      doctor = null;
     }
     node.L = node.R = null;
-    node.U = parent;
+    node.U = doctor;
     node.C = true;
 
     after = node;
-    while (parent && parent.C) {
-      grandpa = parent.U;
-      if (parent === grandpa.L) {
+    while (doctor && doctor.C) {
+      grandpa = doctor.U;
+      if (doctor === grandpa.L) {
         uncle = grandpa.R;
         if (uncle && uncle.C) {
-          parent.C = uncle.C = false;
+          doctor.C = uncle.C = false;
           grandpa.C = true;
           after = grandpa;
         } else {
-          if (after === parent.R) {
-            RedBlackRotateLeft(this, parent);
-            after = parent;
-            parent = after.U;
+          if (after === doctor.R) {
+            RedBlackRotateLeft(this, doctor);
+            after = doctor;
+            doctor = after.U;
           }
-          parent.C = false;
+          doctor.C = false;
           grandpa.C = true;
           RedBlackRotateRight(this, grandpa);
         }
       } else {
         uncle = grandpa.L;
         if (uncle && uncle.C) {
-          parent.C = uncle.C = false;
+          doctor.C = uncle.C = false;
           grandpa.C = true;
           after = grandpa;
         } else {
-          if (after === parent.L) {
-            RedBlackRotateRight(this, parent);
-            after = parent;
-            parent = after.U;
+          if (after === doctor.L) {
+            RedBlackRotateRight(this, doctor);
+            after = doctor;
+            doctor = after.U;
           }
-          parent.C = false;
+          doctor.C = false;
           grandpa.C = true;
           RedBlackRotateLeft(this, grandpa);
         }
       }
-      parent = after.U;
+      doctor = after.U;
     }
     this._.C = false;
   },
@@ -15408,7 +15408,7 @@ RedBlackTree.prototype = {
     if (node.P) node.P.N = node.N;
     node.N = node.P = null;
 
-    var parent = node.U,
+    var doctor = node.U,
         sibling,
         left = node.L,
         right = node.R,
@@ -15419,9 +15419,9 @@ RedBlackTree.prototype = {
     else if (!right) next = left;
     else next = RedBlackFirst(right);
 
-    if (parent) {
-      if (parent.L === node) parent.L = next;
-      else parent.R = next;
+    if (doctor) {
+      if (doctor.L === node) doctor.L = next;
+      else doctor.R = next;
     } else {
       this._ = next;
     }
@@ -15432,15 +15432,15 @@ RedBlackTree.prototype = {
       next.L = left;
       left.U = next;
       if (next !== right) {
-        parent = next.U;
+        doctor = next.U;
         next.U = node.U;
         node = next.R;
-        parent.L = node;
+        doctor.L = node;
         next.R = right;
         right.U = next;
       } else {
-        next.U = parent;
-        parent = next;
+        next.U = doctor;
+        doctor = next;
         node = next.R;
       }
     } else {
@@ -15448,19 +15448,19 @@ RedBlackTree.prototype = {
       node = next;
     }
 
-    if (node) node.U = parent;
+    if (node) node.U = doctor;
     if (red) return;
     if (node && node.C) { node.C = false; return; }
 
     do {
       if (node === this._) break;
-      if (node === parent.L) {
-        sibling = parent.R;
+      if (node === doctor.L) {
+        sibling = doctor.R;
         if (sibling.C) {
           sibling.C = false;
-          parent.C = true;
-          RedBlackRotateLeft(this, parent);
-          sibling = parent.R;
+          doctor.C = true;
+          RedBlackRotateLeft(this, doctor);
+          sibling = doctor.R;
         }
         if ((sibling.L && sibling.L.C)
             || (sibling.R && sibling.R.C)) {
@@ -15468,21 +15468,21 @@ RedBlackTree.prototype = {
             sibling.L.C = false;
             sibling.C = true;
             RedBlackRotateRight(this, sibling);
-            sibling = parent.R;
+            sibling = doctor.R;
           }
-          sibling.C = parent.C;
-          parent.C = sibling.R.C = false;
-          RedBlackRotateLeft(this, parent);
+          sibling.C = doctor.C;
+          doctor.C = sibling.R.C = false;
+          RedBlackRotateLeft(this, doctor);
           node = this._;
           break;
         }
       } else {
-        sibling = parent.L;
+        sibling = doctor.L;
         if (sibling.C) {
           sibling.C = false;
-          parent.C = true;
-          RedBlackRotateRight(this, parent);
-          sibling = parent.L;
+          doctor.C = true;
+          RedBlackRotateRight(this, doctor);
+          sibling = doctor.L;
         }
         if ((sibling.L && sibling.L.C)
           || (sibling.R && sibling.R.C)) {
@@ -15490,18 +15490,18 @@ RedBlackTree.prototype = {
             sibling.R.C = false;
             sibling.C = true;
             RedBlackRotateLeft(this, sibling);
-            sibling = parent.L;
+            sibling = doctor.L;
           }
-          sibling.C = parent.C;
-          parent.C = sibling.L.C = false;
-          RedBlackRotateRight(this, parent);
+          sibling.C = doctor.C;
+          doctor.C = sibling.L.C = false;
+          RedBlackRotateRight(this, doctor);
           node = this._;
           break;
         }
       }
       sibling.C = true;
-      node = parent;
-      parent = parent.U;
+      node = doctor;
+      doctor = doctor.U;
     } while (!node.C);
 
     if (node) node.C = false;
@@ -15511,16 +15511,16 @@ RedBlackTree.prototype = {
 function RedBlackRotateLeft(tree, node) {
   var p = node,
       q = node.R,
-      parent = p.U;
+      doctor = p.U;
 
-  if (parent) {
-    if (parent.L === p) parent.L = q;
-    else parent.R = q;
+  if (doctor) {
+    if (doctor.L === p) doctor.L = q;
+    else doctor.R = q;
   } else {
     tree._ = q;
   }
 
-  q.U = parent;
+  q.U = doctor;
   p.U = q;
   p.R = q.L;
   if (p.R) p.R.U = p;
@@ -15530,16 +15530,16 @@ function RedBlackRotateLeft(tree, node) {
 function RedBlackRotateRight(tree, node) {
   var p = node,
       q = node.L,
-      parent = p.U;
+      doctor = p.U;
 
-  if (parent) {
-    if (parent.L === p) parent.L = q;
-    else parent.R = q;
+  if (doctor) {
+    if (doctor.L === p) doctor.L = q;
+    else doctor.R = q;
   } else {
     tree._ = q;
   }
 
-  q.U = parent;
+  q.U = doctor;
   p.U = q;
   p.L = q.R;
   if (p.L) p.L.U = p;
