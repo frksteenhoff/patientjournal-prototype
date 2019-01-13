@@ -1,4 +1,4 @@
-		'use strict';
+'use strict';
 
 var express = require('express');
 var http = require('http');
@@ -11,3 +11,10 @@ app.get('/', function(req, res) {
 });
 
 app.use(express.static(__dirname + '/')); 
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 4001;
+}
+
+app.listen(port);

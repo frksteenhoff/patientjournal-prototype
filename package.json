@@ -4,12 +4,14 @@
   "description": "Patientjournal Prototype - IBM Teknologi og piger",
   "main": "app.js",
   "scripts": {
-    "start": "node app",
-    "postintall": "gulp default"
+    "test" : "Init app..",
+    "build": "gulp",
+    "start": "node app.js",
+    "postinstall": "gulp default"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fpegios/diabitor-prototype.git"
+    "url": "https://github.com/frksteenhoff/patientjournal-prototype.git"
   },
   "author": "frksteenhoff",
   "license": "ISC",
@@ -17,7 +19,7 @@
     "browser-sync": "^2.23.2",
     "del": "^3.0.0",
     "express": "^4.16.2",
-    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp": "4.0",
     "gulp-clean-css": "^3.9.2",
     "gulp-cli": "^2.0.0",
     "gulp-concat": "^2.6.1",
@@ -27,5 +29,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-sass-bulk-import": "^1.0.1",
     "gulp-uglify": "^3.0.0"
+  },
+  "engines": {
+    "node": "8.9.0"
   }
 }
