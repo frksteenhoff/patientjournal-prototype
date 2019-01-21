@@ -17,7 +17,9 @@ if (port == null || port == "") {
   port = 3000;
 }
 
-app.listen(port);
-server.on('listening', function() {
-  console.log('Express server started on port %s at %s', server.address().port, server.address().address);
-});
+app.set( 'port', ( process.env.PORT || 5000 ));
+
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
