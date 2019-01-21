@@ -12,10 +12,6 @@ app.get('/', function(req, res) {
 
 app.use(express.static(__dirname + '/')); 
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 3000;
-}
 
 app.set( 'port', ( process.env.PORT || 5000 ));
 
