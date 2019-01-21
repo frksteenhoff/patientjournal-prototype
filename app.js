@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 
 app.use(express.static(__dirname + '/')); 
 
-
+console.log(process.env.PORT);
 app.set( 'port', ( process.env.PORT || 5000 ));
 
 // Start node server
