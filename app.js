@@ -14,7 +14,7 @@ app.use(express.static(__dirname + '/'));
 
 app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
 console.log(process.env.PORT);	
-app.set( 'port', ( process.env.PORT || 5000 ));
+app.set( 'port', ( process.env.PORT || 3000 ));
 
 // Start node server
 app.listen( app.get( 'port' ), function() {
