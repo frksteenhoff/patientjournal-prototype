@@ -20,7 +20,3 @@ app.set( 'port', ( process.env.PORT || 3000 ));
 app.listen( app.get( 'port' ), function() {
   console.log( 'Node server is running on port ' + app.get( 'port' ));
   });
-
-http.createServer(app).listen(app.get('port') ,app.get('ip'), function(){
-  console.log("yep", app.get('ip'), app.get('port'));
-});
