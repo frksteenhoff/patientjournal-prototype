@@ -1,16 +1,21 @@
 'use strict';
 
-var express = require('express');
+let express = require('express');
 var http = require('http');
 var path = require('path');
 var app = express();
-var server = http.createServer(app);
+let server = http.createServer(app);
 
-app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/index.html');
+app.use(express.static(path.join(__dirname))); 
+
+app.get('*', function(req, res, next) {
+  res.sendStatus(200);
 });
 
-app.use(express.static(__dirname + '/')); 
+app.get('/index.html', function(req, res, next){
+    res.sendFile(path.join(__dirname+"/index.html"));
+});
+
 const PORT = process.env.PORT || 3000;
 console.log(process.env.PORT, " ", PORT);	
 
