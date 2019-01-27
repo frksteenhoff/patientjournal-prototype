@@ -11,12 +11,12 @@ app.get('/', function(req, res) {
 });
 
 app.use(express.static(__dirname + '/')); 
-
-app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1');
-console.log(process.env.PORT);	
-app.set( 'port', ( process.env.PORT || 3000 ));
+const PORT = process.env.PORT || 3000;
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0');
+console.log(process.env.PORT, " ", PORT);	
+app.set( 'PORT', PORT);
 
 // Start node server
-app.listen( app.get( 'port' ), function() {
-  console.log( 'Node server is running on port ' + app.get( 'port' ));
+app.listen( PORT, function() {
+  console.log( 'Node server is running on port ${PORT}');
   });
