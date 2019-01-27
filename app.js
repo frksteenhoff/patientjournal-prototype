@@ -5,7 +5,7 @@ var http = require('http');
 var path = require('path');
 var app = express();
 let server = http.createServer(app);
-
+console.log(__dirname);
 app.use(express.static(path.join(__dirname + ''))); 
 app.use(express.static(path.join(__dirname + '/assets'))); 
 app.use(express.static(path.join(__dirname + '/src'))); 
