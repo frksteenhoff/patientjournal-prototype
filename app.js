@@ -14,5 +14,5 @@ app.get('/', function(req, res, next){
 
 // Start node server
 app.listen( process.env.PORT || 3000, function() {
-  console.log( 'Node server is running on port ' + PORT);
+  console.log( 'Node server is running');
   });
