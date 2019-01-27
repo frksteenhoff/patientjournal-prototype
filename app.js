@@ -6,7 +6,7 @@ var path = require('path');
 var app = express();
 var server = http.createServer(app);
 
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
