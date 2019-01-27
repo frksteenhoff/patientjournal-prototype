@@ -8,18 +8,11 @@ let server = http.createServer(app);
 
 app.use(express.static(path.join(__dirname))); 
 
-app.get('/', function(req, res, next) {
-  res.sendStatus(200);
+app.get('/', function(req, res, next){
+    res.sendFile(path.join(__dirname, "index.html"));
 });
-
-app.get('/index.html', function(req, res, next){
-    res.sendFile(path.join(__dirname+"/index.html"));
-});
-
-const PORT = process.env.PORT || 3000;
-console.log(process.env.PORT, " ", PORT);	
 
 // Start node server
-app.listen( PORT, function() {
+app.listen( process.env.PORT || 3000, function() {
   console.log( 'Node server is running on port ' + PORT);
   });
