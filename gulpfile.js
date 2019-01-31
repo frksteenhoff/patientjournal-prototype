@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
@@ -32,6 +32,16 @@ var paths = {
   }
 };
 
+//  fire up a static server for Heroku in order to view the 
+// deployed project in a browser.
+gulp.task('serveprod', function() {
+  connect.server({
+    root: [your_project_path],
+    port: process.env.PORT || 5000, // localhost:5000
+    livereload: false
+  });
+});
+
 // restart express server
 gulp.task('nodemon', function (cb) {
   var called = false;
@@ -64,6 +74,7 @@ gulp.task('browser-sync', function () {
     // informs browser-sync to use the following port for the proxied app
     // notice that the default port is 3000, which would clash with our expressjs
     port: 4000,
+    open: false,
   });
 });
 
