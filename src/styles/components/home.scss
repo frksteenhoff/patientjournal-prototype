@@ -8,7 +8,7 @@
 
         .column {
             padding: 1em 0;
-
+            border: 1px solid $lighter-grey;
             &:first-child {
                 border-top: 1px solid $lighter-grey;
             }
