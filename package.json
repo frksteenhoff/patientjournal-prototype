@@ -4,10 +4,7 @@
   "description": "Patientjournal Prototype - IBM Teknologi og piger",
   "main": "app.js",
   "scripts": {
-    "test" : "Init app..",
-    "build": "gulp",
-    "postinstall": "gulp default",
-    "start": "node app.js"
+    "start": "gulp"
   },
   "repository": {
     "type": "git",
@@ -31,7 +28,7 @@
     "gulp-uglify": "^3.0.0"
   },
   "engines": {
-    "node": "8.9.0",
+    "node": "8.14.1",
     "npm": "5.6.0"
   }
 }

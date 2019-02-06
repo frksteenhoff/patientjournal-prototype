@@ -32,16 +32,6 @@ var paths = {
   }
 };
 
-//  fire up a static server for Heroku in order to view the 
-// deployed project in a browser.
-gulp.task('serveprod', function() {
-  connect.server({
-    root: [your_project_path],
-    port: process.env.PORT || 5000, // localhost:5000
-    livereload: false
-  });
-});
-
 // restart express server
 gulp.task('nodemon', function (cb) {
   var called = false;

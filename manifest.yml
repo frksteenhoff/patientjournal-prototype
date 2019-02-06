@@ -1,0 +1,4 @@
+applications:
+  - name: cloud_frksteenhoff
+memory: 400M
+buildpack: https://github.com/cloudfoundry/nodejs-buildpack
