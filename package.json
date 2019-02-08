@@ -1,16 +1,17 @@
 {
-  "name": "patientjournal-prototype",
+  "name": "diabitor-prototype",
   "version": "1.0.0",
-  "description": "Patientjournal Prototype - IBM Teknologi og piger",
+  "description": "Diabitor Prototype",
   "main": "app.js",
   "scripts": {
+    "test": "gulp",
     "start": "gulp"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/frksteenhoff/patientjournal-prototype.git"
+    "url": "https://github.com/fpegios/diabitor-prototype.git"
   },
-  "author": "frksteenhoff",
+  "author": "fpegios",
   "license": "ISC",
   "dependencies": {
     "browser-sync": "^2.23.2",
@@ -25,11 +26,6 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-sass-bulk-import": "^1.0.1",
-    "gulp-uglify": "^3.0.0",
-    "natives": "^1.1.6"
-  },
-  "engines": {
-    "node": ">= 7.0.0",
-    "npm": ">= 4.2.0"
+    "gulp-uglify": "^3.0.0"
   }
 }

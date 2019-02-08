@@ -7,11 +7,11 @@
         margin-bottom: 4em; 
         margin-left: 8em;
         margin-right: 8em;
-    
 
         .column {
             padding: 1em 0;
             border: 1px solid $lighter-grey;
+            
             &:first-child {
                 border-top: 1px solid $lighter-grey;
             }
@@ -66,7 +66,6 @@
                 color: $red;  
                 padding: 0 2em .25em;
                 text-align: center; 
-
             }
 
             .subtitle {

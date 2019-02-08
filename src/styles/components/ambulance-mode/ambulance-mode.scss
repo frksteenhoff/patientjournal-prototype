@@ -2,7 +2,7 @@
     .body {
         justify-content: center;
         
-        .patient-icon {
+        .kid-icon {
             width: 100%;
             display: flex;
             justify-content: center;
@@ -10,7 +10,7 @@
             img {
                 height: 4em;
             }
-        } // .patient-icon
+        } // .kid-icon
 
         .nav-arrow {
             position: absolute;
@@ -41,7 +41,7 @@
             }
         } // .line
 
-        .patient-details {
+        .kid-details {
             width: 80%;
             max-height: 60vh;
             overflow: scroll;
@@ -99,10 +99,13 @@
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
-                background-color: #4CAF50;
+                background-color:$red;
                 color: white;
             }
-        } // .patient-details
+        } // .kid-details
+       
+            
+        
     } // .body
 
     .footer {

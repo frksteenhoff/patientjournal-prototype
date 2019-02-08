@@ -1,51 +1,59 @@
 <!doctype html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Patientjournal">
     <meta name="keywords" content="Patientjournal">
     <meta name="author" content="frksteenhoff">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
         
-   <!--<link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />-->
-    <title>Patientjournalen</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>index.html</title>
 
     <!-- STYLES -->
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <link href="dist/css/main.min.css" type="text/css" rel="stylesheet"/>   
+    <link href="style.css" rel="stylesheet"/>   
+    <link href="dist/css/main.min.css" rel="stylesheet"/>  
+
+    <!-- STYLES  --> 
 </head>
-    <body>
-        <!-- HOME -->
-        <div data-component="home" class="active"></div>    
+<body>
 
-        <!--  ======================================================  -->
-        <!--  PATIENT MODE                                            -->
-        <!--  ======================================================  -->
+    <!-- HOME -->
+    <div data-component="home" class="active"></div>    
 
-        <!-- patient MONITOR -->
-        <div data-component="patient-monitor" class="hidden"></div>
+    <!--  ======================================================  -->
+    <!--  PATIENT MODE                                            -->
+    <!--  ======================================================  -->
 
-        <!-- patient MEASUREMENT: patient input -->
-        <div data-component="patient-measurement" class="hidden"></div>
+    <!-- KID MONITOR -->
+    <div data-component="kid-monitor" class="hidden"></div>
 
-        <!--  ======================================================  -->
-        <!--  LÆGE MODE                                               -->
-        <!--  ======================================================  -->
+    <!-- KID MEASUREMENT: patient input -->
+    <div data-component="kid-measurement" class="hidden"></div>
 
-        <!-- doctor SETUP: læge liste -->
-        <div data-component="doctor-setup" class="hidden"></div>
+    <!--  ======================================================  -->
+    <!--  LÆGE MODE                                               -->
+    <!--  ======================================================  -->
 
-        <!-- doctor STATUS: læge input-->
-        <div data-component="doctor-status" class="hidden"></div>
+    <!-- PARENT SETUP: læge liste -->
+    <div data-component="parent-setup" class="hidden"></div>
 
-        <!--  ======================================================  -->
-        <!--  AMBULANCE MODE                                          -->
-        <!--  ======================================================  -->
+    <!-- PARENT STATUS: læge input-->
+    <div data-component="parent-status" class="hidden"></div>
 
-        <!-- AMBULANCE SETTINGS: ambulance liste -->
-        <div data-component="ambulance-mode" class="hidden"></div>
+    <!-- PARENT SETTINGS: ambulance input -->
+    <div data-component="parent-settings" class="hidden"></div>
 
-        <!-- SCRIPTS -->
-        <script src="dist/js/main.min.js"></script>
-        <!-- SCRIPTS -->
-    </body>
+    <!--  ======================================================  -->
+    <!--  AMBULANCE MODE                                          -->
+    <!--  ======================================================  -->
+
+    <!-- AMBULANCE SETTINGS: ambulance liste -->
+    <div data-component="ambulance-mode" class="hidden"></div>
+
+    <!-- SCRIPTS -->
+    <script src="dist/js/main.min.js"></script>
+    <!-- SCRIPTS -->
+</body>
 </html>

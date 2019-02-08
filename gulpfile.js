@@ -1,4 +1,4 @@
-  'use strict';
+'use strict';
 
 var gulp = require('gulp');
 var sass = require('gulp-sass');
@@ -64,7 +64,6 @@ gulp.task('browser-sync', function () {
     // informs browser-sync to use the following port for the proxied app
     // notice that the default port is 3000, which would clash with our expressjs
     port: 4000,
-    open: false,
   });
 });
 

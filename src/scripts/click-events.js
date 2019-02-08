@@ -1,14 +1,15 @@
+// initialize click events
 function initClickEvents() {    
     //////////////////////////////////////////////////////////////
     // HOME
     //////////////////////////////////////////////////////////////
     
-    $( "#patient-mode" ).off().click(function() {
-        showComponent("patient-measurement");
+    $( "#kid-mode" ).off().click(function() {
+        showComponent("kid-measurement");
     });
 
-    $( "#doctor-mode" ).off().click(function() {
-        showComponent("doctor-setup");
+    $( "#parent-mode" ).off().click(function() {
+        showComponent("parent-setup");
     });
 
     $( "#ambulance-mode" ).off().click(function() {
@@ -20,66 +21,78 @@ function initClickEvents() {
     });
 
     //////////////////////////////////////////////////////////////
-    // PATIENT (all files with 'patient')
+    // PATIENT (all files with 'kid')
     //////////////////////////////////////////////////////////////
 
-    $( ".patient.subtitle" ).off().click(function() {
+    $( ".kid.subtitle" ).off().click(function() {
         showComponent("home");
     });
 
     // PATIENT BOTTOM MENU
-    $( ".patient-monitor-tab" ).off().click(function() {
-        showComponent("patient-monitor");
+    $( ".kid-monitor-tab" ).off().click(function() {
+        showComponent("kid-monitor");
+    });
+
+    // PATIENT MONITOR
+    $( getDataComponent("kid-monitor") + " #monitor-btn" ).off().click(function() {
+        $( getDataComponent("kid-monitor") + " .modal" ).removeClass("hidden");
+        $( getDataComponent("kid-monitor") + "#left-action-btn" ).removeClass("hidden");
+    });
+
+    $( getDataComponent("kid-monitor") + " .submit" ).off().click(function() {
+        $( getDataComponent("kid-monitor") + " .modal" ).addClass("hidden");
+        showComponent("kid-measurement");
     });
 
     // PATIENT MAIN
-    $( getDataComponent("patient-measurement") + " .back-btn" ).off().click(function() {
-        $( getDataComponent("patient-measurement")).addClass("hidden");
+    $( getDataComponent("kid-measurement") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("kid-measurement")).addClass("hidden");
         $( getDataComponent("home")).addClass("hidden");
         showComponent("home");
     });
 
-    $( getDataComponent("patient-measurement") + " .submit" ).off().click(function() {
-        $( getDataComponent("patient-measurement")).addClass("hidden");
+    // LÆGE SETUP
+    $( getDataComponent("kid-measurement") + " .submit" ).off().click(function() {
+        $( getDataComponent("kid-measurement")).addClass("hidden");
         $( getDataComponent("home")).addClass("hidden");
         showComponent("home");
     });
 
     //////////////////////////////////////////////////////////////
-    // DOCTOR (all files with 'doctor')
+    // LÆGE (all files with 'parent')
     //////////////////////////////////////////////////////////////
 
     // TOP BAR
-    $( ".doctor.subtitle" ).off().click(function() {
+    $( ".parent.subtitle" ).off().click(function() {
+            currentMode = "kid";
             showComponent("home");
     });
 
-    // BOTTOM MENU
-    $( ".doctor-status-tab" ).off().click(function() {
-        showComponent("doctor-status");
+    // LÆGE BOTTOM MENU
+    $( ".parent-status-tab" ).off().click(function() {
+        showComponent("parent-status");
     });
 
-
-    // SETUP
-    $( getDataComponent("doctor-setup") + " .submit" ).off().click(function() {
-        patient.name = $( ".setup-name" ).val();
-        patient.age = $( ".setup-age" ).val();
-        patient.regimenType = $( ".setup-regimen" ).val();
-        patient.icRatio = $( ".setup-ic" ).val();
-        patient.isTeen = $('.setup-teen').is(":checked");
-        $( getDataComponent("doctor-setup") + "#left-action-btn" ).removeClass("hidden");
-        showComponent("doctor-status");
+    // LÆGE SETUP
+    $( getDataComponent("parent-setup") + " .submit" ).off().click(function() {
+        kid.name = $( ".setup-name" ).val();
+        kid.age = $( ".setup-age" ).val();
+        kid.regimenType = $( ".setup-regimen" ).val();
+        kid.icRatio = $( ".setup-ic" ).val();
+        kid.isTeen = $('.setup-teen').is(":checked");
+        $( getDataComponent("parent-setup") + "#left-action-btn" ).removeClass("hidden");
+        showComponent("parent-status");
     });
 
     // LÆGE -> MAIN
-    $( getDataComponent("doctor-setup") + " .back-btn" ).off().click(function() {
-        $( getDataComponent("doctor-setup")).addClass("hidden");
+    $( getDataComponent("parent-setup") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("parent-setup")).addClass("hidden");
         $( getDataComponent("home")).addClass("hidden");
         showComponent("home");
     });
 
-    $( getDataComponent("doctor-status") + " .back-btn" ).off().click(function() {
-        $( getDataComponent("doctor-status")).addClass("hidden");
+    $( getDataComponent("parent-status") + " .back-btn" ).off().click(function() {
+        $( getDataComponent("parent-status")).addClass("hidden");
         $( getDataComponent("home")).addClass("hidden");
         showComponent("home");
     });
@@ -92,7 +105,18 @@ function initClickEvents() {
         showComponent("home");
     });
 
-    // MAIN
+    // AMBULANCE BOTTOM MENU
+    $( ".ambulance-status-tab" ).off().click(function() {
+        // Not yet implemented
+        showComponent("ambulance-status");
+    });
+
+    $( ".ambulance-settings-tab" ).off().click(function() {
+        // Not yet implemented
+        showComponent("ambulance-settings");
+    });
+
+    // AMBULANCE -> MAIN
     $( getDataComponent("ambulance-mode") + " .back-btn" ).off().click(function() {
         $( getDataComponent("ambulance-mode")).addClass("hidden");
         $( getDataComponent("home")).addClass("hidden");

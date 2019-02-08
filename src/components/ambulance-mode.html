@@ -9,7 +9,7 @@
 
 <script>
     $.getJSON( "src/scripts/data/patienter.json", function(data) {
-    console.log( "success" + __dirname);
+    console.log( "success" );
     
     var table = document.getElementById("patient-amb");
     var tbody = document.createElement("tbody");
@@ -61,11 +61,12 @@
 
 </script>
 
+    
 <div class="body">
-    <div class="patient-icon">
+    <div class="kid-icon">
         <img class="icon" src="assets/ambulance.png" alt="">
     </div>
-    <div class="patient-details">
+    <div class="kid-details">
         <table id="patient-amb">
           <tr>
             <th>Navn</th>
@@ -76,18 +77,10 @@
         </table>
     </div>
 </div>
+    
 
     <div class="footer menu">
-       <!-- <div class="ambulance-status-tab column match-doctor-height">
-            <img src="assets/heart-grey.png" alt="">
-            <span class="grey">Status</span>
+        <div class="endnote">
+            <pend>Lavet i samarbejde mellem: Trørødskolens seje piger og IBM Client Innovation Center, efteråret 2018.</pend>
         </div>
-        <div class="ambulance-history-tab column match-doctor-height">
-            <img src="assets/analytics-red.png" alt="">
-            <span class="red">Hitorik</span>
-        </div>
-        <div class="ambulance-settings-tab column match-doctor-height">
-            <img src="assets/settings-grey.png" alt="">
-            <span class="grey">Indstillinger</span>
-        </div>-->
     </div>

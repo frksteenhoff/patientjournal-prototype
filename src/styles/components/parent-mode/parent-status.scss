@@ -1,0 +1,119 @@
+[data-component="parent-status"]{
+    .body {
+        justify-content: center;
+        
+        .kid-icon {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 0 0 2em;
+            img {
+                height: 4em;
+            }
+        } // .kid-icon
+
+        .nav-arrow {
+            position: absolute;
+            top: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Nexa-Light;
+            img {
+                width: 15px;
+            }
+            &.prev {
+                left: 5%;
+            }
+            &.next {
+                right: 5%;
+            }
+        } // .nav-arrow
+
+        .line {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 1.25em 0;
+            img {
+                width: 50%;
+                height: 1px;
+            }
+        } // .line
+
+        .kid-details {
+            width: 100%;
+            max-height: 60vh;
+            overflow: scroll;
+            .row {
+                padding: 1em 0;
+                border-top: 1px solid $lighter-grey;
+
+                .detail-type {
+                    width: 50%;
+                    padding-left: 2em;
+
+                    span {
+                        font-family: Lato-Regular;
+                        font-size: 16px;
+                        color: $light-grey;
+                    }
+                }
+            }
+                input {
+                    height: 150px;
+                    padding-right: 2em;
+                   font-family: Lato-Regular;
+                        font-size: 16px;
+                        color: $light-grey;
+                        border-radius: 1px;
+                        padding: 0.25em 0.15em;
+                        border: 1px solid $light-grey;
+                        width: 50%;
+                        margin-left: 25%;
+                    }
+
+                input:focus {
+                            border-color: $red;
+                            box-shadow:inset 0 0 1px 1px $red;
+                            background: #fff;
+                        
+                    }
+                
+            
+            #patient-l {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 50%;
+                margin: auto;
+            }
+
+            #patient-l td, #patient-l th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #patient-l tr:nth-child(even){background-color: #f2f2f2;}
+
+            .left {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: $red;
+                color: white;
+            }
+        } // .kid-details
+       
+            
+        
+    } // .body
+
+    .footer {
+        border: none;
+        button {
+            width: 50%;
+            bottom: 1em;
+            position: absolute;
+        }
+    } // .footer
+} // [data-component]
