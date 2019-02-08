@@ -12,7 +12,6 @@
   },
   "author": "frksteenhoff",
   "license": "MIT",
-
   "dependencies": {
     "browser-sync": "^2.23.2",
     "del": "^3.0.0",
