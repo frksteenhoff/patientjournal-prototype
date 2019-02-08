@@ -1,10 +1,13 @@
 [data-component="home"]{
     position: center;
+
     .body {
-        flex: 1 0 auto;
+        right: 0;
+        left:0;
         margin-bottom: 4em; 
-        margin-left: 1em;
-        width: 93%;
+        margin-left: 8em;
+        margin-right: 8em;
+    
 
         .column {
             padding: 1em 0;
@@ -63,6 +66,7 @@
                 color: $red;  
                 padding: 0 2em .25em;
                 text-align: center; 
+
             }
 
             .subtitle {

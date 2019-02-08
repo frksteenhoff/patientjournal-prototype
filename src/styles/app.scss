@@ -1,7 +1,7 @@
 @import '_colors';
 @import '_fonts';
-@import '_variables';
 @import '_normalize';
+@import '_variables';
 
 @import 'layout.scss';
 @import 'components/home.scss';
@@ -10,8 +10,8 @@
 @import 'components/ambulance-mode/ambulance-mode.scss';
 
 // Patient mode styles
-@import 'components/patient-mode/patient-monitor.scss';
 @import 'components/patient-mode/patient-measurement.scss';
+@import 'components/patient-mode/patient-monitor.scss';
 
 // Læge mode styles
 @import 'components/doctor-mode/doctor-setup.scss';

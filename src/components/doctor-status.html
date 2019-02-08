@@ -6,8 +6,6 @@
     <div class="right-action-btn"></div>
 </div>
 
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-
 <script>
     $.getJSON( "src/scripts/data/patienter.json", function(data) {
     console.log( "success" );
@@ -17,7 +15,7 @@
 
     // VÆLG HVILKEN PATIENT DER SKAL VISES FRA patienter.json
     // 0 er den første
-    var patientAtVise = 5;
+    var patientAtVise = 3;
             var tr = document.createElement("tr");
             var th = document.createElement("th");
             var thh = document.createTextNode("Navn");

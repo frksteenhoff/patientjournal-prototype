@@ -1,7 +1,5 @@
 <!doctype html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Patientjournal">
     <meta name="keywords" content="Patientjournal">
@@ -12,43 +10,42 @@
     <title>Patientjournalen</title>
 
     <!-- STYLES -->
-    <link href="style.css" rel="stylesheet"/>   
-    <link href="dist/css/main.min.css" rel="stylesheet"/>  
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <link href="dist/css/main.min.css" type="text/css" rel="stylesheet"/>   
 </head>
-<body>
+    <body>
+        <!-- HOME -->
+        <div data-component="home" class="active"></div>    
 
-    <!-- HOME -->
-    <div data-component="home" class="active"></div>    
+        <!--  ======================================================  -->
+        <!--  PATIENT MODE                                            -->
+        <!--  ======================================================  -->
 
-    <!--  ======================================================  -->
-    <!--  PATIENT MODE                                            -->
-    <!--  ======================================================  -->
+        <!-- patient MONITOR -->
+        <div data-component="patient-monitor" class="hidden"></div>
 
-    <!-- patient MONITOR -->
-    <div data-component="patient-monitor" class="hidden"></div>
+        <!-- patient MEASUREMENT: patient input -->
+        <div data-component="patient-measurement" class="hidden"></div>
 
-    <!-- patient MEASUREMENT: patient input -->
-    <div data-component="patient-measurement" class="hidden"></div>
+        <!--  ======================================================  -->
+        <!--  LÆGE MODE                                               -->
+        <!--  ======================================================  -->
 
-    <!--  ======================================================  -->
-    <!--  LÆGE MODE                                               -->
-    <!--  ======================================================  -->
+        <!-- doctor SETUP: læge liste -->
+        <div data-component="doctor-setup" class="hidden"></div>
 
-    <!-- doctor SETUP: læge liste -->
-    <div data-component="doctor-setup" class="hidden"></div>
+        <!-- doctor STATUS: læge input-->
+        <div data-component="doctor-status" class="hidden"></div>
 
-    <!-- doctor STATUS: læge input-->
-    <div data-component="doctor-status" class="hidden"></div>
+        <!--  ======================================================  -->
+        <!--  AMBULANCE MODE                                          -->
+        <!--  ======================================================  -->
 
-    <!--  ======================================================  -->
-    <!--  AMBULANCE MODE                                          -->
-    <!--  ======================================================  -->
+        <!-- AMBULANCE SETTINGS: ambulance liste -->
+        <div data-component="ambulance-mode" class="hidden"></div>
 
-    <!-- AMBULANCE SETTINGS: ambulance liste -->
-    <div data-component="ambulance-mode" class="hidden"></div>
-
-    <!-- SCRIPTS -->
-    <script src="dist/js/main.min.js"></script>
-    <!-- SCRIPTS -->
-</body>
+        <!-- SCRIPTS -->
+        <script src="dist/js/main.min.js"></script>
+        <!-- SCRIPTS -->
+    </body>
 </html>

@@ -1,7 +1,6 @@
 [data-component="ambulance-mode"]{
     .body {
-        align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: center;
         
         .patient-icon {
             width: 100%;
@@ -43,8 +42,7 @@
         } // .line
 
         .patient-details {
-            width: 93%;
-            margin-left: 4em;
+            width: 80%;
             max-height: 60vh;
             overflow: scroll;
             .row {

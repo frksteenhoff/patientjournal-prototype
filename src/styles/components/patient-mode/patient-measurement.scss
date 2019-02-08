@@ -1,7 +1,6 @@
 [data-component="patient-measurement"]{
     .body {
-        align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: center;
         
         .patient-icon {
             width: 100%;
@@ -43,8 +42,7 @@
         } // .line
 
         .patient-details {
-            width: 93%;
-            margin-left: 4em;
+            width: 80%;
 
             .row {
                 padding: 1em 0;
@@ -87,6 +85,7 @@
     .footer {
         border: none;
         button {
+            width: 50%;
             bottom: 1em;
             position: absolute;
         }

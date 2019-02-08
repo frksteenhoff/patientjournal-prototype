@@ -32,22 +32,6 @@ function initClickEvents() {
         showComponent("patient-monitor");
     });
 
-    // PATIENT MONITOR
-    $( getDataComponent("patient-monitor") + " #monitor-btn" ).off().click(function() {
-        $( getDataComponent("patient-monitor") + " .modal" ).removeClass("hidden");
-        $( getDataComponent("patient-monitor") + "#left-action-btn" ).removeClass("hidden");
-    });
-
-    $( getDataComponent("patient-monitor") + " .submit" ).off().click(function() {
-        $( getDataComponent("patient-monitor") + " .modal" ).addClass("hidden");
-        measureGlucoseLevel();
-        $( getDataComponent("patient-measurement") + " .face img").attr('src', measurements[0].face);
-        $( getDataComponent("patient-measurement") + " .feedback .image img").attr('src', measurements[0].feedbackImg);
-        $( getDataComponent("patient-measurement") + " .feedback .action").html(measurements[0].feedbackAction);
-        patient.hasNewMeasurement = true;
-        showComponent("patient-measurement");
-    });
-
     // PATIENT MAIN
     $( getDataComponent("patient-measurement") + " .back-btn" ).off().click(function() {
         $( getDataComponent("patient-measurement")).addClass("hidden");
@@ -106,17 +90,6 @@ function initClickEvents() {
 
     $( ".ambulance.subtitle" ).off().click(function() {
         showComponent("home");
-    });
-
-    // BOTTOM MENU
-    $( ".ambulance-status-tab" ).off().click(function() {
-        // Not yet implemented
-        showComponent("ambulance-status");
-    });
-
-    $( ".ambulance-settings-tab" ).off().click(function() {
-        // Not yet implemented
-        showComponent("ambulance-settings");
     });
 
     // MAIN

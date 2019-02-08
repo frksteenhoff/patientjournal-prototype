@@ -1,7 +1,6 @@
 [data-component="doctor-setup"]{
     .body {
-        align-items: flex-start;
-        justify-content: flex-start;
+        justify-content: center;
         
         .patient-icon {
             width: 100%;
@@ -44,7 +43,7 @@
 
         .patient-details {
             margin: 4em;
-            width: 93%;
+            width: 80%;
             max-height: 60vh;
             overflow: scroll;
             .row {
@@ -53,7 +52,6 @@
 
                 .detail-type {
                     width: 50%;
-                    padding-left: 2em;
 
                     span {
                         font-family: Lato-Regular;
@@ -115,6 +113,7 @@
         button {
             bottom: 1em;
             position: absolute;
+            width: 50%;
         }
     } // .footer
 } // [data-component]
